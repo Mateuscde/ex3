@@ -1,0 +1,225 @@
+﻿<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>projeto1</title>
+		<style>
+			body {
+				margin: 0px;
+				padding:0px;
+				background: #2E8B70;
+			}
+			#barra1 {
+				width: 100%;
+				height: 50px;
+				background: #2C6B5E;
+			}
+			@media (min-width: 1000px) {
+
+			#cont1 {
+				display:grid;
+				grid-template-columns:1fr 1fr ;
+				width: 100%;
+				height: 70vh;
+				background: none;
+			}
+			#cont2 {
+				width: 100%;
+				height: 250vh;
+				background: white;
+			}
+			#cont22 {
+				display: grid;
+				grid-template-columns: 1fr 1fr 1fr;
+				width: 100%;
+				background: white;
+			}
+			.squad1 {
+				position:relative;
+				top:-70px;
+				left:46%;
+				transform: translate(-50%,0%);
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				width: 200px;
+				height: 210px;
+				border-radius:20px;
+				background: #2E8B70;
+				box-shadow: 0px 0px 10px;
+				transition:0.6s;
+				margin: 20px; /* Espaçamento entre os quadrados */
+			}
+			.squad1:hover{filter:hue-rotate(20deg);
+			cursor:pointer;
+				width: 230px;
+				height: 240px;
+				}
+			.squad1 img {
+				max-width: 100%;
+				max-height: 100%;
+			}
+			.squad1 .texto {
+				margin-top: 10px;
+				font-size: 14px;
+				font-family: Arial;
+				color: white;
+				font-weight: bold;
+				text-align: center;
+			}
+			#wttm {
+				width: 400px;
+				position: relative;
+				top: 15%;
+				left: 100px;
+			}
+			p {
+				text-align: center;
+			}
+			#p1 {
+				font-size: 30pt;
+				font-family: Arial;
+				color: white;
+				font-weight: bold;
+			}
+			#p2 {
+				position: relative;
+				top: -25px;
+				font-size: 9pt;
+				font-family: Arial;
+				color: white;
+				font-weight: bold;
+			}
+			.icon{
+				width:50%;
+				filter:invert(100%);
+				}
+			
+			#logo{
+			position:relative;
+				width:50%;
+				left:20%;
+			}
+			#ban{display:none;width:100%;}
+			}
+			@media (max-width: 1000px) {
+				#cont1 {
+				display:grid;
+				grid-template-columns:1fr 1fr ;
+				width: 100%;
+				height: 300px;
+				background: none;
+			}
+			#cont2 {
+				width: 100%;
+				height: 250vh;
+				background: white;
+			}
+			#cont22 {
+				display: grid;
+				grid-template-columns: 1fr 1fr 1fr;
+				width: 100%;
+				background: white;
+			}
+			.squad1 {
+				position:relative;
+				top:50px;
+				left:46%;
+				transform: translate(-50%,0%);
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				width: 200px;
+				height: 210px;
+				border-radius:20px;
+				background: #2E8B70;
+				box-shadow: 0px 0px 10px;
+				transition:0.6s;
+				margin: 20px; /* Espaçamento entre os quadrados */
+			}
+			.squad1:hover{filter:hue-rotate(20deg);
+			cursor:pointer;
+				width: 230px;
+				height: 240px;
+				}
+			.squad1 img {
+				max-width: 100%;
+				max-height: 100%;
+			}
+			.squad1 .texto {
+				margin-top: 10px;
+				font-size: 14px;
+				font-family: Arial;
+				color: white;
+				font-weight: bold;
+				text-align: center;
+			}
+			#wttm {
+				width: 400px;
+				position: relative;
+				top: 15%;
+				left: 100px;
+			}
+			p {
+				text-align: center;
+			}
+			#p1 {
+				font-size: 30pt;
+				font-family: Arial;
+				color: white;
+				font-weight: bold;
+			}
+			#p2 {
+				position: relative;
+				top: -25px;
+				font-size: 9pt;
+				font-family: Arial;
+				color: white;
+				font-weight: bold;
+			}
+			.icon{
+				width:50%;
+				filter:invert(100%);
+				}
+			
+			#logo{
+			position:relative;
+				width:50%;
+				left:20%;
+			}
+			
+			#ban{display:block;width:100%;}
+			}
+            }
+		</style>
+	</head>
+	<body>
+		<div id="barra1"></div>
+		<div id="cont1">
+			<div id="wttm">
+				<p id="p1">seja bem-vindo ao BAMBUP</p>
+				<p id="p2">proteja aquilo que é importante para você.</p>
+			</div>
+			<img id="logo" src="https://i0.wp.com/imagensemoldes.com.br/wp-content/uploads/2020/05/Ilustra%C3%A7%C3%A3o-Panda-PNG.png?fit=1000%2C1000&ssl=1">
+		</div>
+		<div id="cont2">
+		<img id="ban" src="https://png.pngtree.com/thumb_back/fw800/background/20230618/pngtree-adorable-bear-studying-with-books-3d-rendering-image_3633381.jpg"/>
+		<div id="cont22">
+			<div class="squad1" id="s1">
+				<img class="icon" src="https://cdn-icons-png.flaticon.com/512/1159/1159633.png" alt="Imagem 1">
+				<div class="texto">saiba sobre</div>
+			</div>
+			<div class="squad1" id="s2">
+				<img class="icon" src="https://cdn-icons-png.flaticon.com/512/151/151770.png" alt="Imagem 2">
+				<div class="texto">faça seu tempo</div>
+			</div>
+			<div class="squad1" id="s3">
+				<img class="icon" src="https://cdn-icons-png.flaticon.com/512/1250/1250645.png" alt="Imagem 3">
+				<div class="texto">identificação</div>
+			</div>
+			</div>
+		</div>
+	</body>
+</html>
