@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0'">
+    <title>Player de Música</title>
+    <style type="text/css">
+       body {
+       font-family: Arial, sans-serif;
+       min-height: 100vh;
+       margin: 0;
+       padding: 0;
+       background:black;
+       overflow-x:hidden;
+       }
+       *{
+       user-select:none;
+       -webkit-user-drag: none; 
+       font-family:Arial,sans-serif;
+       margin:0px;
+       padding:0px;
+       }
+       *{margin:0;padding:0;}
+       #fundo {
+       z-index:20;
+       position:fixed;
+       width:100%;
+       height:100vh;
+       left:-100%;
+       background:black;
+       }
+       #logo2{
+       position:absolute;
+       width:70%;
+       left:50%;
+       top:50%;
+       transform:translate(-50%,-50%);
+       opacity:0;
+       transition:2s;
+       }
+       #header{
+       z-index:3;
+       position:sticky;
+       top:0px;
+       width:100%;
+       height:80px;
+       background:#124D62;
+       }
+       #logo{
+       position:absolute;
+       height:60%;
+       margin:15px;
+       background:none;
+       border-radius:0%;
+       }
+       #cont_search{
+       display:none;
+       position:absolute;
+       width:200px;
+       height:40px;
+       top:50%;
+       right:3%;
+       background:white;
+       border-radius:10px;
+       transform:translate(0%,-50%);
+       }
+       #pesquisa {
+       position:absolute;
+       width:95%;
+       height:100%;
+       background:none;
+       padding:0;
+       margin:0;
+       left:7px;
+       border:none;
+       outline:none;
+       }
+       .banner{
+       position:relative;
+       width:90%;
+       height:250px;
+       background:gray;
+       border-radius:20px;
+       background-image:url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7-XCV6gwoAFOsNZyYJIGd6n8LtlVHgF8146fADaPHEO1qH7GcoxiQvfI&s=10");
+       box-shadow:0px 0px 30px gray;
+       margin-top:30px;
+       margin-bottom:100px;
+       left:50%;
+       transform:translate(-50%,0px);
+       }
+        .capa{
+       position:absolute;
+       width:200px;
+       height:200px;
+       background:gray;
+       background-image:url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7-XCV6gwoAFOsNZyYJIGd6n8LtlVHgF8146fADaPHEO1qH7GcoxiQvfI&s=10");
+       background-size:cover;
+       top:50%;
+       left:25px;
+       border-radius:10px;
+       transform:translate(0%,-50%);
+       box-shadow:0px 0px 40px gray;
+       }
+       .disc {
+       position:absolute;
+       width:200px;
+       height:200px;
+       background:none;
+       border-radius:50%;
+       top:50%;
+       left:27%;
+       transform:translate(0%,-50%);
+       filter:hue-rotate(340deg) brightness(340%);
+       background-image:url("https://png.pngtree.com/png-clipart/20230303/ourmid/pngtree-vinyl-records-png-image_6629914.png");
+       background-attachment:fixed;
+       background-size:cover;
+       }
+       
+       @keyframes spin {
+       0% {
+       transform:translate(0%,-50%) rotate(0deg);
+       }
+       100% {
+       transform:translate(0%,-50%) rotate(360deg);
+       }
+       }
+       .play{
+       position:absolute;
+       width:70px;
+       height:70px;
+       background:#FF545F;
+       right:20px;
+       bottom:-30px;
+       border-radius:50%;
+       }
+       
+       .play-ico{
+       position:absolute;
+       width:80%;
+       left:50%;
+       top:50%;
+       transform:translate(-50%,-50%);
+       }
+       .txt{
+       position:absolute;
+       bottom:-25px;
+       left:20px;
+       color:white;
+       font-weight:bold;
+       text-transform:uppercase;
+       }
+       #conttxt{
+       position:relative;
+       width:100%;
+       height:60px;
+       background:none;
+       margin-top:30px;
+       }
+       #txtinicio{
+       position:absolute;
+       width:auto;
+       font-size:25pt;
+       color:white;
+       bottom:0px;
+       left:50%;
+       transform:translate(-50%,0px);
+       text-transform:uppercase;
+       font-weight:bold;
+       }
+    </style>
+</head>
+<body>
+     <audio id="musica" ></audio>
+     <div id="fundo" ><img id="logo2"  src="imagens/logo.png" ></div>
+
+     <div id="header" ><img id="logo"  src="imagens/logo.png"/><div id="cont_search" ><input id="pesquisa"  type="search" placeholder="pesquisar"  ></div></div>
+     <div id="conttxt" ><span id="txtinicio" >CD030-sara</span></div>
+     
+     <div class="banner" >
+        <div class="disc" ></div>
+        <div class="capa" ></div>
+        <div class="play" ><img class="play-ico"  src="https://cdn-icons-png.flaticon.com/512/120/120625.png" ></div>
+        <p class="txt" >🎧 voz guia</p>
+     </div>
+     
+     <div class="banner" >
+     <div class="disc" ></div>
+     <div class="capa" ></div>
+     <div class="play" ><img class="play-ico"  src="https://cdn-icons-png.flaticon.com/512/120/120625.png" ></div>
+     <p class="txt" >🎧 dinamitadora 45-321</p>
+     </div>
+     
+     <div class="banner" >
+     <div class="disc" ></div>
+     <div class="capa" ></div>
+     <div class="play" ><img class="play-ico"  src="https://cdn-icons-png.flaticon.com/512/120/120625.png" ></div>
+     <p class="txt" >🎧 cidade viva</p>
+     </div>
+     
+     <div class="banner" >
+     <div class="disc" ></div>
+     <div class="capa" ></div>
+     <div class="play" ><img class="play-ico"  src="https://cdn-icons-png.flaticon.com/512/120/120625.png" ></div>
+     <p class="txt" >🎧 energia nova</p>
+     </div>
+     
+     <div class="banner" >
+     <div class="disc" ></div>
+     <div class="capa" ></div>
+     <div class="play" ><img class="play-ico"  src="https://cdn-icons-png.flaticon.com/512/120/120625.png" ></div>
+     <p class="txt" >🎧 força da vitoria</p>
+     </div>
+     
+     <div class="banner" >
+     <div class="disc" ></div>
+     <div class="capa" ></div>
+     <div class="play" ><img class="play-ico"  src="https://cdn-icons-png.flaticon.com/512/120/120625.png" ></div>
+     <p class="txt" >🎧 energia nova</p>
+     </div>
+     
+     <div class="banner" >
+     <div class="disc" ></div>
+     <div class="capa" ></div>
+     <div class="play" ><img class="play-ico"  src="https://cdn-icons-png.flaticon.com/512/120/120625.png" ></div>
+     <p class="txt" >🎧 força da vitoria</p>
+     </div>
+</body>
+<script type="text/javascript">
+      var banner=document.getElementsByClassName("banner");
+      var capa=document.getElementsByClassName("capa");
+      var disc=document.getElementsByClassName("disc");
+      var play=document.getElementsByClassName("play");
+      var playico=document.getElementsByClassName("play-ico");
+      var txt=document.getElementsByClassName("txt");
+      
+      var logo=document.getElementById("logo2");
+      var fundo=document.getElementById("fundo");
+      var musica=document.getElementById("musica");
+      
+      setTimeout(function(){
+      logo.style="trasition:7s;opacity:1;";},2000);
+      
+      setTimeout(function(){
+        fundo.style="transition:0.3s;left:-100%;"
+      
+      },5000);
+      
+      var image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJ3tgUbH5Kdr0FlaxK2iIroANJ4WMNZ7qFCmgIImhlHjUMxYy-H1LfwIo&s=10";
+      
+      for (var i = 0; i < banner.length; i++) {
+      banner[i].style="background-image:url("+image+");background-attachment:fixed;background-size:cover;";
+      };
+      for (var i = 0; i < capa.length; i++) {
+      capa[i].style="background-image:url("+image+");background-attachment:fixed;background-size:cover;";
+      };
+   
+      function clear(){
+      musica.pause();
+      for (var i = 0; i < playico.length; i++) {
+      playico[i].src="https://cdn-icons-png.flaticon.com/512/120/120625.png";
+      };
+      for (var i = 0; i < disc.length; i++) {
+      disc[i].style="animation:spin 0s linear infinite;";
+      };
+      };
+      
+      playico[0].addEventListener("click",function(){
+         if(playico[0].src=="https://cdn-icons-png.flaticon.com/512/120/120625.png"){
+         clear();
+         musica.src="audios/sara/sara1.mp3";
+         musica.play();
+         disc[0].style="animation:spin 2s linear infinite;";
+         playico[0].src="https://cdn-icons-png.flaticon.com/512/61/61180.png";
+         }else{
+         musica.pause();
+         disc[0].style="animation:spin 0s linear infinite;";
+         playico[0].src="https://cdn-icons-png.flaticon.com/512/120/120625.png";
+         };
+      });
+      playico[1].addEventListener("click",function(){
+        if(playico[1].src=="https://cdn-icons-png.flaticon.com/512/120/120625.png"){
+        clear();
+        musica.src="audios/sara/sara2.mp3";
+        musica.play();
+        disc[1].style="animation:spin 2s linear infinite;";
+        playico[1].src="https://cdn-icons-png.flaticon.com/512/61/61180.png";
+        }else{
+        musica.pause();
+        disc[1].style="animation:spin 0s linear infinite;";
+        playico[1].src="https://cdn-icons-png.flaticon.com/512/120/120625.png";
+        };
+      });
+      playico[2].addEventListener("click",function(){
+      if(playico[2].src=="https://cdn-icons-png.flaticon.com/512/120/120625.png"){
+      clear();
+      musica.src="audios/sara/sara3.mp3";
+      musica.play();
+      disc[2].style="animation:spin 2s linear infinite;";
+      playico[2].src="https://cdn-icons-png.flaticon.com/512/61/61180.png";
+      }else{
+      musica.pause();
+      disc[2].style="animation:spin 0s linear infinite;";
+      playico[2].src="https://cdn-icons-png.flaticon.com/512/120/120625.png";
+      };
+      });
+      
+      playico[3].addEventListener("click",function(){
+      if(playico[3].src=="https://cdn-icons-png.flaticon.com/512/120/120625.png"){
+      clear();
+      musica.src="audios/sara/sara4.mp3";
+      musica.play();
+      disc[3].style="animation:spin 2s linear infinite;";
+      playico[3].src="https://cdn-icons-png.flaticon.com/512/61/61180.png";
+      }else{
+      musuca.pause();
+      disc[3].style="animation:spin 0s linear infinite;";
+      playico[3].src="https://cdn-icons-png.flaticon.com/512/120/120625.png";
+      };
+      });
+      playico[4].addEventListener("click",function(){
+      if(playico[4].src=="https://cdn-icons-png.flaticon.com/512/120/120625.png"){
+      clear();
+      musica.src="audios/sara/sara5.mp3";
+      musica.play();
+      disc[4].style="animation:spin 2s linear infinite;";
+      playico[4].src="https://cdn-icons-png.flaticon.com/512/61/61180.png";
+      }else{
+      musuca.pause();
+      disc[4].style="animation:spin 0s linear infinite;";
+      playico[4].src="https://cdn-icons-png.flaticon.com/512/120/120625.png";
+      };
+      });
+      playico[5].addEventListener("click",function(){
+      if(playico[5].src=="https://cdn-icons-png.flaticon.com/512/120/120625.png"){
+      clear();
+      musica.src="audios/sara/sara6.mp3";
+      musica.play();
+      disc[5].style="animation:spin 2s linear infinite;";
+      playico[5].src="https://cdn-icons-png.flaticon.com/512/61/61180.png";
+      }else{
+      musuca.pause();
+      disc[5].style="animation:spin 0s linear infinite;";
+      playico[5].src="https://cdn-icons-png.flaticon.com/512/120/120625.png";
+      };
+      });
+      playico[6].addEventListener("click",function(){
+      if(playico[6].src=="https://cdn-icons-png.flaticon.com/512/120/120625.png"){
+      clear();
+      musica.src="audios/sara/sara7.mp3";
+      musica.play();
+      disc[6].style="animation:spin 2s linear infinite;";
+      playico[6].src="https://cdn-icons-png.flaticon.com/512/61/61180.png";
+      }else{
+      musuca.pause();
+      disc[6].style="animation:spin 0s linear infinite;";
+      playico[6].src="https://cdn-icons-png.flaticon.com/512/120/120625.png";
+      };
+      });
+      playico[7].addEventListener("click",function(){
+      if(playico[7].src=="https://cdn-icons-png.flaticon.com/512/120/120625.png"){
+      clear();
+      musica.src="audios/sara/sara8.mp3";
+      musica.play();
+      disc[7].style="animation:spin 2s linear infinite;";
+      playico[7].src="https://cdn-icons-png.flaticon.com/512/61/61180.png";
+      }else{
+      musuca.pause();
+      disc[7].style="animation:spin 0s linear infinite;";
+      playico[7].src="https://cdn-icons-png.flaticon.com/512/120/120625.png";
+      };
+      });
+      playico[8].addEventListener("click",function(){
+      if(playico[4].src=="https://cdn-icons-png.flaticon.com/512/120/120625.png"){
+      clear();
+      musica.src="audios/sara/sara9.mp3";
+      musica.play();
+      disc[8].style="animation:spin 2s linear infinite;";
+      playico[8].src="https://cdn-icons-png.flaticon.com/512/61/61180.png";
+      }else{
+      musuca.pause();
+      disc[8].style="animation:spin 0s linear infinite;";
+      playico[8].src="https://cdn-icons-png.flaticon.com/512/120/120625.png";
+      };
+      });
+      playico[9].addEventListener("click",function(){
+      if(playico[9].src=="https://cdn-icons-png.flaticon.com/512/120/120625.png"){
+      clear();
+      musica.src="audios/sara/sara10.mp3";
+      musica.play();
+      disc[9].style="animation:spin 2s linear infinite;";
+      playico[9].src="https://cdn-icons-png.flaticon.com/512/61/61180.png";
+      }else{
+      musuca.pause();
+      disc[9].style="animation:spin 0s linear infinite;";
+      playico[9].src="https://cdn-icons-png.flaticon.com/512/120/120625.png";
+      };
+      });
+      playico[10].addEventListener("click",function(){
+      if(playico[10].src=="https://cdn-icons-png.flaticon.com/512/120/120625.png"){
+      clear();
+      musica.src="audios/sara/sara11.mp3";
+      musica.play();
+      disc[10].style="animation:spin 2s linear infinite;";
+      playico[10].src="https://cdn-icons-png.flaticon.com/512/61/61180.png";
+      }else{
+      musuca.pause();
+      disc[10].style="animation:spin 0s linear infinite;";
+      playico[10].src="https://cdn-icons-png.flaticon.com/512/120/120625.png";
+      };
+      });
+      playico[11].addEventListener("click",function(){
+      if(playico[11].src=="https://cdn-icons-png.flaticon.com/512/120/120625.png"){
+      clear();
+      musica.src="audios/sara/sara12.mp3";
+      musica.play();
+      disc[11].style="animation:spin 2s linear infinite;";
+      playico[11].src="https://cdn-icons-png.flaticon.com/512/61/61180.png";
+      }else{
+      musuca.pause();
+      disc[11].style="animation:spin 0s linear infinite;";
+      playico[11].src="https://cdn-icons-png.flaticon.com/512/120/120625.png";
+      };
+      });
+</script>
+</html>
