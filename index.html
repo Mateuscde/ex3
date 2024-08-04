@@ -267,11 +267,13 @@
       var disc=document.getElementsByClassName("disc");
       var play=document.getElementsByClassName("play");
       var playico=document.getElementsByClassName("play-ico");
-      var txt=document.getElementsByClassName("txt");
+      var txt=document.getElementsByClassName("txt").value;
       
       var logo=document.getElementById("logo2");
       var fundo=document.getElementById("fundo");
       var musica=document.getElementById("musica");
+      
+      var txtmusica;
       
       setTimeout(function(){
       logo.style="trasition:7s;opacity:1;";},2000);
@@ -305,6 +307,7 @@
          clear();
          musica.src="audios/sara/sara1.mp3";
          musica.play();
+         txtmusica=txt[0];
          disc[0].style="animation:spin 2s linear infinite;";
          playico[0].src="https://cdn-icons-png.flaticon.com/512/61/61180.png";
          }else{
@@ -468,7 +471,7 @@
       
       // Define os metadados da mídia
       navigator.mediaSession.metadata = new MediaMetadata({
-      title: 'Nome da Música',
+      title: txtmusica,
       artist: 'Artista',
       album: 'Álbum',
       artwork: [
