@@ -303,11 +303,11 @@
       };
       
       playico[0].addEventListener("click",function(){
+         txtmusica=txt[0].value;
          if(playico[0].src=="https://cdn-icons-png.flaticon.com/512/120/120625.png"){
          clear();
          musica.src="audios/sara/sara1.mp3";
          musica.play();
-         txtmusica=txt[0].value;
          disc[0].style="animation:spin 2s linear infinite;";
          playico[0].src="https://cdn-icons-png.flaticon.com/512/61/61180.png";
          }else{
@@ -472,7 +472,7 @@
       // Define os metadados da mídia
       navigator.mediaSession.metadata = new MediaMetadata({
       title: txtmusica,
-      artist: 'Artista',
+      artist: 'Gen',
       album: 'Álbum',
       artwork: [
       { src: 'album-art.jpg', sizes: '96x96', type: 'image/jpeg' },
