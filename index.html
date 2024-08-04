@@ -303,7 +303,8 @@
       };
       
       playico[0].addEventListener("click",function(){
-         txtmusica=txt[0].value;
+         txtmusica=txt[0].textContent;
+         alert(txtmusica);
          if(playico[0].src=="https://cdn-icons-png.flaticon.com/512/120/120625.png"){
          clear();
          musica.src="audios/sara/sara1.mp3";
@@ -509,8 +510,7 @@
       musica.addEventListener('pause', () => {
       navigator.mediaSession.playbackState = 'paused';
       });
-      }else{alert("oi")
-      }
+      };
       
       
 </script>
