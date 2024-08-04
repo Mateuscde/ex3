@@ -267,7 +267,7 @@
       var disc=document.getElementsByClassName("disc");
       var play=document.getElementsByClassName("play");
       var playico=document.getElementsByClassName("play-ico");
-      var txt=document.getElementsByClassName("txt").value;
+      var txt=document.getElementsByClassName("txt");
       
       var logo=document.getElementById("logo2");
       var fundo=document.getElementById("fundo");
@@ -307,7 +307,7 @@
          clear();
          musica.src="audios/sara/sara1.mp3";
          musica.play();
-         txtmusica=txt[0];
+         txtmusica=txt[0].value;
          disc[0].style="animation:spin 2s linear infinite;";
          playico[0].src="https://cdn-icons-png.flaticon.com/512/61/61180.png";
          }else{
