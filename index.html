@@ -304,7 +304,7 @@
       
       playico[0].addEventListener("click",function(){
          txtmusica=txt[0].textContent;
-         //alert(txtmusica);
+         //alert(txtmusica.toString());
          if(playico[0].src=="https://cdn-icons-png.flaticon.com/512/120/120625.png"){
          clear();
          musica.src="audios/sara/sara1.mp3";
@@ -463,16 +463,14 @@
       });
       
       
-      
-      
-      
+      setInterval(function(){
       // Verifica se o Media Session API é suportado
       if ('mediaSession' in navigator) {
       //const musica = document.getElementById('musica');
       
       // Define os metadados da mídia
       navigator.mediaSession.metadata = new MediaMetadata({
-      title: `${txtmusica}`,
+      title: txtmusica,
       artist: 'Gen',
       album: 'Álbum',
       artwork: [
@@ -511,7 +509,7 @@
       navigator.mediaSession.playbackState = 'paused';
       });
       };
-      
+      }0);
       
 </script>
 </html>
