@@ -28,6 +28,7 @@
        width:100%;
        height:100vh;
        left:-100%;
+       top:0px;
        background:black;
        }
        #logo2{
@@ -41,18 +42,23 @@
        }
        #header{
        z-index:3;
-       position:sticky;
+       position:absolute;
        top:0px;
-       width:100%;
+       left:50%;
+       width:90%;
        height:80px;
-       background:#124D62;
+       background:#000;
+       border-bottom:3px solid gray;
+       transform:translate(-50%,0px);
        }
        #logo{
        position:absolute;
        height:60%;
-       margin:15px;
+       margin-top:15px;
+       left:4%;
        background:none;
        border-radius:0%;
+       transform:translate(0%,0px);
        }
        #cont_search{
        display:none;
@@ -77,70 +83,32 @@
        outline:none;
        }
        .banner{
+       display:block;
        position:relative;
        width:90%;
-       height:250px;
+       height:100px;
        background:gray;
        border-radius:20px;
        background-image:url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7-XCV6gwoAFOsNZyYJIGd6n8LtlVHgF8146fADaPHEO1qH7GcoxiQvfI&s=10");
        box-shadow:0px 0px 30px gray;
-       margin-top:30px;
-       margin-bottom:100px;
+       margin-top:70px;
+       margin-bottom:20px;
+       top:0px;
        left:50%;
        transform:translate(-50%,0px);
        }
         .capa{
        position:absolute;
-       width:200px;
-       height:200px;
+       width:120px;
+       height:120px;
        background:gray;
        background-image:url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7-XCV6gwoAFOsNZyYJIGd6n8LtlVHgF8146fADaPHEO1qH7GcoxiQvfI&s=10");
        background-size:cover;
-       top:50%;
+       bottom:0%;
        left:25px;
        border-radius:10px;
-       transform:translate(0%,-50%);
+       transform:translate(0%,-0%);
        box-shadow:0px 0px 40px gray;
-       }
-       .disc {
-       position:absolute;
-       width:200px;
-       height:200px;
-       background:none;
-       border-radius:50%;
-       top:50%;
-       left:27%;
-       transform:translate(0%,-50%);
-       filter:hue-rotate(340deg) brightness(340%);
-       background-image:url("https://png.pngtree.com/png-clipart/20230303/ourmid/pngtree-vinyl-records-png-image_6629914.png");
-       background-attachment:fixed;
-       background-size:cover;
-       }
-       
-       @keyframes spin {
-       0% {
-       transform:translate(0%,-50%) rotate(0deg);
-       }
-       100% {
-       transform:translate(0%,-50%) rotate(360deg);
-       }
-       }
-       .play{
-       position:absolute;
-       width:70px;
-       height:70px;
-       background:#FF545F;
-       right:20px;
-       bottom:-30px;
-       border-radius:50%;
-       }
-       
-       .play-ico{
-       position:absolute;
-       width:80%;
-       left:50%;
-       top:50%;
-       transform:translate(-50%,-50%);
        }
        .txt{
        position:absolute;
@@ -155,12 +123,12 @@
        width:100%;
        height:60px;
        background:none;
-       margin-top:30px;
+       margin-top:110px;
        }
        #txtinicio{
        position:absolute;
        width:auto;
-       font-size:25pt;
+       font-size:4vh;
        color:white;
        bottom:0px;
        left:50%;
@@ -175,103 +143,26 @@
      <div id="fundo" ><img id="logo2"  src="imagens/logo.png" ></div>
 
      <div id="header" ><img id="logo"  src="imagens/logo.png"/><div id="cont_search" ><input id="pesquisa"  type="search" placeholder="pesquisar"  ></div></div>
-     <div id="conttxt" ><span id="txtinicio" >CD030-sara</span></div>
+     <div id="conttxt" ><span id="txtinicio" >explorar</span></div>
      
-     <div class="banner" >
-        <div class="disc" ></div>
-        <div class="capa" ></div>
-        <div class="play" ><img class="play-ico"  src="https://cdn-icons-png.flaticon.com/512/120/120625.png" ></div>
-        <p class="txt" >🎧 voz guia</p>
+     <div class="banner" style="background-image:url('imagens/icoflaviaS.jpeg');"  onclick="flaviaS()">
+        <div class="capa" style="background-image:url('imagens/icoflaviaS.jpeg');" ></div>
+        <p class="txt" >👤 Flavia Santos</p>
      </div>
      
-     <div class="banner" >
-     <div class="disc" ></div>
-     <div class="capa" ></div>
-     <div class="play" ><img class="play-ico"  src="https://cdn-icons-png.flaticon.com/512/120/120625.png" ></div>
-     <p class="txt" >🎧 dinamitadora 45-321</p>
+     <div class="banner" style="background-image:url('imagens/icosara.jpeg');" onclick="sara()" >
+     <div class="capa" style="background-image:url('imagens/icosara.jpeg');" ></div>
+     <p class="txt" >👤 Sara</p>
      </div>
      
-     <div class="banner" >
-     <div class="disc" ></div>
-     <div class="capa" ></div>
-     <div class="play" ><img class="play-ico"  src="https://cdn-icons-png.flaticon.com/512/120/120625.png" ></div>
-     <p class="txt" >🎧 cidade viva</p>
-     </div>
-     
-     <div class="banner" >
-     <div class="disc" ></div>
-     <div class="capa" ></div>
-     <div class="play" ><img class="play-ico"  src="https://cdn-icons-png.flaticon.com/512/120/120625.png" ></div>
-     <p class="txt" >🎧 energia nova</p>
-     </div>
-     
-     <div class="banner" >
-     <div class="disc" ></div>
-     <div class="capa" ></div>
-     <div class="play" ><img class="play-ico"  src="https://cdn-icons-png.flaticon.com/512/120/120625.png" ></div>
-     <p class="txt" >🎧 força da vitoria</p>
-     </div>
-     
-     <div class="banner" >
-     <div class="disc" ></div>
-     <div class="capa" ></div>
-     <div class="play" ><img class="play-ico"  src="https://cdn-icons-png.flaticon.com/512/120/120625.png" ></div>
-     <p class="txt" >🎧 uniao do amor</p>
-     </div>
-     
-     <div class="banner" >
-     <div class="disc" ></div>
-     <div class="capa" ></div>
-     <div class="play" ><img class="play-ico"  src="https://cdn-icons-png.flaticon.com/512/120/120625.png" ></div>
-     <p class="txt" >🎧 uniao do amor2</p>
-     </div>
-     
-     <div class="banner" >
-     <div class="disc" ></div>
-     <div class="capa" ></div>
-     <div class="play" ><img class="play-ico"  src="https://cdn-icons-png.flaticon.com/512/120/120625.png" ></div>
-     <p class="txt" >🎧 ja ganhou ja ganhou</p>
-     </div>
-     
-     <div class="banner" >
-     <div class="disc" ></div>
-     <div class="capa" ></div>
-     <div class="play" ><img class="play-ico"  src="https://cdn-icons-png.flaticon.com/512/120/120625.png" ></div>
-     <p class="txt" >🎧 ja ganhou ja ganhou 2</p>
-     </div>
-     
-     <div class="banner" >
-     <div class="disc" ></div>
-     <div class="capa" ></div>
-     <div class="play" ><img class="play-ico"  src="https://cdn-icons-png.flaticon.com/512/120/120625.png" ></div>
-     <p class="txt" >🎧 a escolhida</p>
-     </div>
-     
-     <div class="banner" >
-     <div class="disc" ></div>
-     <div class="capa" ></div>
-     <div class="play" ><img class="play-ico"  src="https://cdn-icons-png.flaticon.com/512/120/120625.png" ></div>
-     <p class="txt" >🎧 minha magia</p>
-     </div>
-     
-     <div class="banner" >
-     <div class="disc" ></div>
-     <div class="capa" ></div>
-     <div class="play" ><img class="play-ico"  src="https://cdn-icons-png.flaticon.com/512/120/120625.png" ></div>
-     <p class="txt" >🎧 opção n°1</p>
+     <div class="banner" style="background-image:url('imagens/icojoaoM.jpeg');"  onclick="joao()">
+     <div class="capa" style="background-image:url('imagens/icojoaoM.jpeg');" ></div>
+     <p class="txt" >👤 João Miranda</p>
      </div>
 </body>
 <script type="text/javascript">
-      var banner=document.getElementsByClassName("banner");
-      var capa=document.getElementsByClassName("capa");
-      var disc=document.getElementsByClassName("disc");
-      var play=document.getElementsByClassName("play");
-      var playico=document.getElementsByClassName("play-ico");
-      var txt=document.getElementsByClassName("txt");
-      
       var logo=document.getElementById("logo2");
       var fundo=document.getElementById("fundo");
-      var musica=document.getElementById("musica");
       
       var txtmusica;
       
@@ -279,248 +170,19 @@
       logo.style="trasition:7s;opacity:1;";},2000);
       
       setTimeout(function(){
-        fundo.style="transition:0.3s;left:-100%;"
-      
+      fundo.style="transition:0.3s;left:-100%;"
       },5000);
       
-      var image="imagens/icosara.jpeg";
       
-      for (var i = 0; i < banner.length; i++) {
-      banner[i].style="background-image:url("+image+");background-attachment:fixed;background-size:cover;";
+      function flaviaS(){
+      window.location.replace("flaviaS.html");
       };
-      for (var i = 0; i < capa.length; i++) {
-      capa[i].style="background-image:url("+image+");background-attachment:fixed;background-size:cover;";
+      function sara(){
+      window.location.replace("sara.html");
       };
-   
-      function clear(){
-      musica.pause();
-      for (var i = 0; i < playico.length; i++) {
-      playico[i].src="https://cdn-icons-png.flaticon.com/512/120/120625.png";
+      function joao(){
+      window.location.replace("joao.html");
       };
-      for (var i = 0; i < disc.length; i++) {
-      disc[i].style="animation:spin 0s linear infinite;";
-      };
-      };
-      
-      playico[0].addEventListener("click",function(){
-         txtmusica=txt[0].textContent;
-         //alert(txtmusica.toString());
-         if(playico[0].src=="https://cdn-icons-png.flaticon.com/512/120/120625.png"){
-         clear();
-         musica.src="audios/sara/sara1.mp3";
-         musica.play();
-         disc[0].style="animation:spin 2s linear infinite;";
-         playico[0].src="https://cdn-icons-png.flaticon.com/512/61/61180.png";
-         }else{
-         musica.pause();
-         disc[0].style="animation:spin 0s linear infinite;";
-         playico[0].src="https://cdn-icons-png.flaticon.com/512/120/120625.png";
-         };
-      });
-      playico[1].addEventListener("click",function(){
-        txtmusica=txt[1].textContent;
-        if(playico[1].src=="https://cdn-icons-png.flaticon.com/512/120/120625.png"){
-        clear();
-        musica.src="audios/sara/sara2.mp3";
-        musica.play();
-        disc[1].style="animation:spin 2s linear infinite;";
-        playico[1].src="https://cdn-icons-png.flaticon.com/512/61/61180.png";
-        }else{
-        musica.pause();
-        disc[1].style="animation:spin 0s linear infinite;";
-        playico[1].src="https://cdn-icons-png.flaticon.com/512/120/120625.png";
-        };
-      });
-      playico[2].addEventListener("click",function(){
-      txtmusica=txt[2].textContent;
-      if(playico[2].src=="https://cdn-icons-png.flaticon.com/512/120/120625.png"){
-      clear();
-      musica.src="audios/sara/sara3.mp3";
-      musica.play();
-      disc[2].style="animation:spin 2s linear infinite;";
-      playico[2].src="https://cdn-icons-png.flaticon.com/512/61/61180.png";
-      }else{
-      musica.pause();
-      disc[2].style="animation:spin 0s linear infinite;";
-      playico[2].src="https://cdn-icons-png.flaticon.com/512/120/120625.png";
-      };
-      });
-      
-      playico[3].addEventListener("click",function(){
-      txtmusica=txt[3].textContent;
-      if(playico[3].src=="https://cdn-icons-png.flaticon.com/512/120/120625.png"){
-      clear();
-      musica.src="audios/sara/sara4.mp3";
-      musica.play();
-      disc[3].style="animation:spin 2s linear infinite;";
-      playico[3].src="https://cdn-icons-png.flaticon.com/512/61/61180.png";
-      }else{
-      musica.pause();
-      disc[3].style="animation:spin 0s linear infinite;";
-      playico[3].src="https://cdn-icons-png.flaticon.com/512/120/120625.png";
-      };
-      });
-      playico[4].addEventListener("click",function(){
-      txtmusica=txt[4].textContent;
-      if(playico[4].src=="https://cdn-icons-png.flaticon.com/512/120/120625.png"){
-      clear();
-      musica.src="audios/sara/sara5.mp3";
-      musica.play();
-      disc[4].style="animation:spin 2s linear infinite;";
-      playico[4].src="https://cdn-icons-png.flaticon.com/512/61/61180.png";
-      }else{
-      musica.pause();
-      disc[4].style="animation:spin 0s linear infinite;";
-      playico[4].src="https://cdn-icons-png.flaticon.com/512/120/120625.png";
-      };
-      });
-      playico[5].addEventListener("click",function(){
-      txtmusica=txt[5].textContent;
-      if(playico[5].src=="https://cdn-icons-png.flaticon.com/512/120/120625.png"){
-      clear();
-      musica.src="audios/sara/sara6.mp3";
-      musica.play();
-      disc[5].style="animation:spin 2s linear infinite;";
-      playico[5].src="https://cdn-icons-png.flaticon.com/512/61/61180.png";
-      }else{
-      musica.pause();
-      disc[5].style="animation:spin 0s linear infinite;";
-      playico[5].src="https://cdn-icons-png.flaticon.com/512/120/120625.png";
-      };
-      });
-      playico[6].addEventListener("click",function(){
-      txtmusica=txt[6].textContent;
-      if(playico[6].src=="https://cdn-icons-png.flaticon.com/512/120/120625.png"){
-      clear();
-      musica.src="audios/sara/sara7.mp3";
-      musica.play();
-      disc[6].style="animation:spin 2s linear infinite;";
-      playico[6].src="https://cdn-icons-png.flaticon.com/512/61/61180.png";
-      }else{
-      musica.pause();
-      disc[6].style="animation:spin 0s linear infinite;";
-      playico[6].src="https://cdn-icons-png.flaticon.com/512/120/120625.png";
-      };
-      });
-      playico[7].addEventListener("click",function(){
-      txtmusica=txt[7].textContent;
-      if(playico[7].src=="https://cdn-icons-png.flaticon.com/512/120/120625.png"){
-      clear();
-      musica.src="audios/sara/sara8.mp3";
-      musica.play();
-      disc[7].style="animation:spin 2s linear infinite;";
-      playico[7].src="https://cdn-icons-png.flaticon.com/512/61/61180.png";
-      }else{
-      musica.pause();
-      disc[7].style="animation:spin 0s linear infinite;";
-      playico[7].src="https://cdn-icons-png.flaticon.com/512/120/120625.png";
-      };
-      });
-      playico[8].addEventListener("click",function(){
-      txtmusica=txt[8].textContent;
-      if(playico[8].src=="https://cdn-icons-png.flaticon.com/512/120/120625.png"){
-      clear();
-      musica.src="audios/sara/sara9.mp3";
-      musica.play();
-      disc[8].style="animation:spin 2s linear infinite;";
-      playico[8].src="https://cdn-icons-png.flaticon.com/512/61/61180.png";
-      }else{
-      musica.pause();
-      disc[8].style="animation:spin 0s linear infinite;";
-      playico[8].src="https://cdn-icons-png.flaticon.com/512/120/120625.png";
-      };
-      });
-      playico[9].addEventListener("click",function(){
-      txtmusica=txt[9].textContent;
-      if(playico[9].src=="https://cdn-icons-png.flaticon.com/512/120/120625.png"){
-      clear();
-      musica.src="audios/sara/sara10.mp3";
-      musica.play();
-      disc[9].style="animation:spin 2s linear infinite;";
-      playico[9].src="https://cdn-icons-png.flaticon.com/512/61/61180.png";
-      }else{
-      musica.pause();
-      disc[9].style="animation:spin 0s linear infinite;";
-      playico[9].src="https://cdn-icons-png.flaticon.com/512/120/120625.png";
-      };
-      });
-      playico[10].addEventListener("click",function(){
-      txtmusica=txt[10].textContent;
-      if(playico[10].src=="https://cdn-icons-png.flaticon.com/512/120/120625.png"){
-      clear();
-      musica.src="audios/sara/sara11.mp3";
-      musica.play();
-      disc[10].style="animation:spin 2s linear infinite;";
-      playico[10].src="https://cdn-icons-png.flaticon.com/512/61/61180.png";
-      }else{
-      musica.pause();
-      disc[10].style="animation:spin 0s linear infinite;";
-      playico[10].src="https://cdn-icons-png.flaticon.com/512/120/120625.png";
-      };
-      });
-      playico[11].addEventListener("click",function(){
-      txtmusica=txt[11].textContent;
-      if(playico[11].src=="https://cdn-icons-png.flaticon.com/512/120/120625.png"){
-      clear();
-      musica.src="audios/sara/sara12.mp3";
-      musica.play();
-      disc[11].style="animation:spin 2s linear infinite;";
-      playico[11].src="https://cdn-icons-png.flaticon.com/512/61/61180.png";
-      }else{
-      musica.pause();
-      disc[11].style="animation:spin 0s linear infinite;";
-      playico[11].src="https://cdn-icons-png.flaticon.com/512/120/120625.png";
-      };
-      });
-      
-      
-      setInterval(function(){
-      // Verifica se o Media Session API é suportado
-      if ('mediaSession' in navigator) {
-      //const musica = document.getElementById('musica');
-      
-      // Define os metadados da mídia
-      navigator.mediaSession.metadata = new MediaMetadata({
-      title: txtmusica,
-      artist: 'Gen',
-      album: 'Álbum',
-      artwork: [
-      { src: 'album-art.jpg', sizes: '96x96', type: 'image/jpeg' },
-      { src: 'album-art.jpg', sizes: '128x128', type: 'image/jpeg' },
-      { src: 'album-art.jpg', sizes: '192x192', type: 'image/jpeg' },
-      { src: 'album-art.jpg', sizes: '256x256', type: 'image/jpeg' },
-      { src: 'album-art.jpg', sizes: '384x384', type: 'image/jpeg' },
-      { src: 'album-art.jpg', sizes: '512x512', type: 'image/jpeg' },
-      ]
-      });
-      
-      // Define ações de controle da mídia
-      navigator.mediaSession.setActionHandler('play', () => {
-      musica.play();
-      });
-      navigator.mediaSession.setActionHandler('pause', () => {
-      musica.pause();
-      });
-      navigator.mediaSession.setActionHandler('seekbackward', (details) => {
-      musica.currentTime = Math.max(musica.currentTime - (details.seekOffset || 10), 0);
-      });
-      navigator.mediaSession.setActionHandler('seekforward', (details) => {
-      musica.currentTime = Math.min(musica.currentTime + (details.seekOffset || 10), musica.duration);
-      });
-      navigator.mediaSession.setActionHandler('stop', () => {
-      musica.pause();
-      musica.currentTime = 0;
-      });
-      
-      // Atualiza o estado de reprodução
-      musica.addEventListener('play', () => {
-      navigator.mediaSession.playbackState = 'playing';
-      });
-      musica.addEventListener('pause', () => {
-      navigator.mediaSession.playbackState = 'paused';
-      });
-      };
-      },0);
       
 </script>
 </html>
