@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Casa de Hambúrguer Codó - Hamburgueria Artesanal</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            amber: '#f59e0b',
+                            red: '#dc2626',
+                            dark: '#0f0f11',
+                            card: '#18181b',
+                            border: '#27272a',
+                            accent: '#ff5722'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts & FontAwesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0b0b0d;
+            color: #f3f4f6;
+        }
+        .glass-panel {
+            background: rgba(24, 24, 27, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card {
+            background: rgba(28, 28, 35, 0.6);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .glow-effect {
+            box-shadow: 0 0 25px -5px rgba(245, 158, 11, 0.3);
+        }
+        .glow-red {
+            box-shadow: 0 0 25px -5px rgba(220, 38, 38, 0.4);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f0f11;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #27272a;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f59e0b;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-black">
+
+    <!-- TOP ANNOUNCEMENT BAR -->
+    <div class="bg-gradient-to-r from-amber-600 via-red-600 to-amber-600 text-white text-xs sm:text-sm font-semibold py-2 px-4 text-center flex items-center justify-center gap-2 shadow-lg z-50">
+        <span class="flex h-2 w-2 relative">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+        </span>
+        <span>Aberto Hoje das 18:00 às 23:30 · Delivery & Atendimento na Cobertura em Codó</span>
+    </div>
+
+    <!-- MAIN NAVIGATION -->
+    <header class="sticky top-0 z-40 glass-panel border-b border-zinc-800/80 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- BRAND / LOGO -->
+                <a href="#inicio" class="flex items-center gap-3 group">
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-500 to-red-600 p-0.5 shadow-lg group-hover:scale-105 transition-transform duration-300">
+                        <div class="w-full h-full bg-zinc-950 rounded-[14px] flex items-center justify-center">
+                            <i class="fa-solid fa-burger text-2xl text-amber-500 group-hover:rotate-12 transition-transform"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="text-xl font-black tracking-wider text-white block leading-none">LA CASA</span>
+                        <span class="text-xs font-bold tracking-widest text-amber-500 uppercase">DE HAMBÚRGUER</span>
+                    </div>
+                </a>
+
+                <!-- DESKTOP NAV TABS -->
+                <nav class="hidden md:flex items-center gap-1 bg-zinc-900/80 p-1.5 rounded-full border border-zinc-800">
+                    <a href="#inicio" class="nav-link px-5 py-2 rounded-full text-sm font-medium transition-all text-amber-500 bg-zinc-800">Início</a>
+                    <a href="#cardapio" class="nav-link px-5 py-2 rounded-full text-sm font-medium text-zinc-400 hover:text-white transition-all">Cardápio</a>
+                    <a href="#sobre" class="nav-link px-5 py-2 rounded-full text-sm font-medium text-zinc-400 hover:text-white transition-all">A Casa & Rooftop</a>
+                    <a href="#avaliacoes" class="nav-link px-5 py-2 rounded-full text-sm font-medium text-zinc-400 hover:text-white transition-all">Avaliações</a>
+                </nav>
+
+                <!-- HEADER ACTIONS & CART -->
+                <div class="flex items-center gap-3">
+                    <button onclick="toggleCart()" class="relative bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-zinc-950 font-bold px-4 py-2.5 rounded-xl flex items-center gap-2.5 transition-all shadow-lg hover:shadow-amber-500/20 active:scale-95">
+                        <i class="fa-solid fa-bag-shopping text-lg"></i>
+                        <span class="hidden sm:inline">Meu Pedido</span>
+                        <span id="cart-badge" class="bg-zinc-950 text-amber-400 text-xs px-2 py-0.5 rounded-full font-black">0</span>
+                    </button>
+
+                    <!-- MOBILE MENU TOGGLE -->
+                    <button onclick="toggleMobileMenu()" class="md:hidden text-zinc-300 hover:text-white p-2.5 rounded-xl bg-zinc-900 border border-zinc-800">
+                        <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- MOBILE NAV DROPDOWN -->
+        <div id="mobile-menu" class="hidden md:hidden glass-panel border-b border-zinc-800 px-4 pt-2 pb-6 space-y-2">
+            <a href="#inicio" onclick="toggleMobileMenu()" class="block px-4 py-3 rounded-xl font-medium text-amber-500 bg-zinc-800/60">Início</a>
+            <a href="#cardapio" onclick="toggleMobileMenu()" class="block px-4 py-3 rounded-xl font-medium text-zinc-300 hover:bg-zinc-800">Cardápio Completo</a>
+            <a href="#sobre" onclick="toggleMobileMenu()" class="block px-4 py-3 rounded-xl font-medium text-zinc-300 hover:bg-zinc-800">Sobre & Localização</a>
+            <a href="#avaliacoes" onclick="toggleMobileMenu()" class="block px-4 py-3 rounded-xl font-medium text-zinc-300 hover:bg-zinc-800">Avaliações (4.1★)</a>
+            <div class="pt-2 flex gap-2">
+                <a href="https://wa.me/5599982640045" target="_blank" class="flex-1 bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2 text-sm">
+                    <i class="fa-brands fa-whatsapp text-lg"></i> WhatsApp
+                </a>
+                <a href="tel:99982640045" class="bg-zinc-800 hover:bg-zinc-700 text-white font-bold p-3 rounded-xl flex items-center justify-center">
+                    <i class="fa-solid fa-phone"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        
+        <!-- HERO SECTION -->
+        <section id="inicio" class="relative min-h-[85vh] flex items-center justify-center overflow-hidden py-16">
+            <!-- Background Image with Overlay -->
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&q=80&w=1600" alt="Burguer Artesanal background" class="w-full h-full object-cover object-center opacity-25 filter blur-[2px] scale-105">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#0b0b0d] via-[#0b0b0d]/80 to-transparent"></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-[#0b0b0d] via-transparent to-[#0b0b0d]"></div>
+            </div>
+
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left grid md:grid-cols-12 gap-12 items-center">
+                
+                <div class="md:col-span-7 space-y-6">
+                    <!-- BADGE -->
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs sm:text-sm font-semibold">
+                        <i class="fa-solid fa-fire text-amber-500 animate-pulse"></i>
+                        <span>O Hambúrguer Mais Suculento de Codó - MA</span>
+                    </div>
+
+                    <!-- HEADLINE -->
+                    <h1 class="text-4xl sm:text-6xl font-black text-white tracking-tight leading-tight">
+                        Sabor Artesanal <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-500 to-red-500">Na Cobertura de Codó</span>
+                    </h1>
+
+                    <p class="text-zinc-300 text-base sm:text-lg max-w-2xl font-normal leading-relaxed">
+                        Carnes selecionadas, molhos secretos da casa, pão sempre fresquinho e um ambiente exclusivo na cobertura. Peça online no delivery ou venha nos visitar!
+                    </p>
+
+                    <!-- QUICK INFO STRIP -->
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 py-2 text-xs sm:text-sm text-zinc-300">
+                        <div class="flex items-center gap-2 bg-zinc-900/80 border border-zinc-800 p-2.5 rounded-xl">
+                            <i class="fa-solid fa-star text-amber-400 text-base"></i>
+                            <div>
+                                <span class="font-bold text-white block">4.1 / 5.0</span>
+                                <span class="text-zinc-500 text-xs">16+ Avaliações</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 bg-zinc-900/80 border border-zinc-800 p-2.5 rounded-xl">
+                            <i class="fa-solid fa-building-user text-amber-400 text-base"></i>
+                            <div>
+                                <span class="font-bold text-white block">Mesas na Cobertura</span>
+                                <span class="text-zinc-500 text-xs">Com Wi-Fi Grátis</span>
+                            </div>
+                        </div>
+                        <div class="col-span-2 sm:col-span-1 flex items-center gap-2 bg-zinc-900/80 border border-zinc-800 p-2.5 rounded-xl">
+                            <i class="fa-solid fa-clock text-emerald-400 text-base"></i>
+                            <div>
+                                <span class="font-bold text-emerald-400 block">Aberto Agora</span>
+                                <span class="text-zinc-500 text-xs">Fecha às 23:30</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- HERO BUTTONS -->
+                    <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+                        <a href="#cardapio" class="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-zinc-950 font-extrabold px-8 py-4 rounded-2xl text-center shadow-lg glow-effect transition-all transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-3">
+                            <i class="fa-solid fa-utensils"></i>
+                            Ver Cardápio & Pedir
+                        </a>
+                        <a href="https://wa.me/5599982640045" target="_blank" class="bg-zinc-900 hover:bg-zinc-800 text-white font-bold px-6 py-4 rounded-2xl border border-zinc-700 text-center transition-all flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-emerald-500 text-xl"></i>
+                            Pedido Rápido WhatsApp
+                        </a>
+                    </div>
+                    
+                    <!-- ADDRESS DIRECT LINK -->
+                    <div class="pt-2 text-xs text-zinc-400 flex items-center justify-center sm:justify-start gap-2">
+                        <i class="fa-solid fa-location-dot text-red-500"></i>
+                        <span>Av. Augusto Teixeira, 2778 - São Sebastião, Codó - MA</span>
+                    </div>
+
+                </div>
+
+                <!-- HERO FEATURED BURGER BANNER CARD -->
+                <div class="md:col-span-5 relative">
+                    <div class="relative mx-auto max-w-sm rounded-3xl p-1 bg-gradient-to-b from-amber-500/30 via-red-500/20 to-transparent">
+                        <div class="glass-panel rounded-[22px] p-6 text-center space-y-4 relative overflow-hidden">
+                            
+                            <span class="absolute top-4 right-4 bg-red-600 text-white font-black text-xs px-3 py-1 rounded-full uppercase tracking-wider shadow">
+                                O Mais Pedido
+                            </span>
+
+                            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&q=80&w=800" alt="La Casa Monster Burger" class="w-full h-52 object-cover rounded-2xl shadow-xl hover:scale-105 transition-transform duration-500">
+                            
+                            <div class="text-left space-y-1">
+                                <h3 class="text-xl font-bold text-white">La Casa Suprema Cheese</h3>
+                                <p class="text-xs text-zinc-400 line-clamp-2">Blend artesanal 180g, bacon crocante, cheddar duplo cremoso, cebola caramelizada e molho especial no pão brioche.</p>
+                            </div>
+
+                            <div class="flex items-center justify-between pt-2 border-t border-zinc-800">
+                                <div>
+                                    <span class="text-xs text-zinc-500 block text-left">A partir de</span>
+                                    <span class="text-2xl font-black text-amber-400">R$ 32,90</span>
+                                </div>
+                                <button onclick="openCustomizer(1)" class="bg-amber-500 hover:bg-amber-400 text-zinc-950 p-3 rounded-xl font-bold transition-all shadow hover:scale-105">
+                                    <i class="fa-solid fa-plus text-lg"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- MENU SECTION -->
+        <section id="cardapio" class="py-16 bg-zinc-950/60 border-t border-zinc-900 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <!-- SECTION HEADER -->
+                <div class="text-center space-y-3 mb-10">
+                    <h2 class="text-xs font-black tracking-widest text-amber-500 uppercase">Nosso Cardápio</h2>
+                    <p class="text-3xl sm:text-4xl font-extrabold text-white">Escolha Seu Hambúrguer Favorito</p>
+                    <p class="text-zinc-400 text-sm max-w-xl mx-auto">Feitos na hora com ingredientes selecionados e o tempero especial de Codó</p>
+                </div>
+
+                <!-- CATEGORY TABS -->
+                <div class="flex items-center justify-start md:justify-center gap-2 overflow-x-auto pb-4 mb-8 scrollbar-none">
+                    <button onclick="filterCategory('all')" class="cat-btn active px-5 py-2.5 rounded-xl font-semibold text-sm whitespace-nowrap bg-amber-500 text-zinc-950 shadow-md">
+                        <i class="fa-solid fa-border-all mr-1.5"></i> Todos os Itens
+                    </button>
+                    <button onclick="filterCategory('artesanal')" class="cat-btn px-5 py-2.5 rounded-xl font-semibold text-sm whitespace-nowrap bg-zinc-900 text-zinc-400 hover:text-white border border-zinc-800">
+                        <i class="fa-solid fa-burger mr-1.5 text-amber-500"></i> Artesanais
+                    </button>
+                    <button onclick="filterCategory('smash')" class="cat-btn px-5 py-2.5 rounded-xl font-semibold text-sm whitespace-nowrap bg-zinc-900 text-zinc-400 hover:text-white border border-zinc-800">
+                        <i class="fa-solid fa-fire-burner mr-1.5 text-amber-500"></i> Smash Burguers
+                    </button>
+                    <button onclick="filterCategory('combos')" class="cat-btn px-5 py-2.5 rounded-xl font-semibold text-sm whitespace-nowrap bg-zinc-900 text-zinc-400 hover:text-white border border-zinc-800">
+                        <i class="fa-solid fa-box-open mr-1.5 text-amber-500"></i> Combos & Batatas
+                    </button>
+                    <button onclick="filterCategory('bebidas')" class="cat-btn px-5 py-2.5 rounded-xl font-semibold text-sm whitespace-nowrap bg-zinc-900 text-zinc-400 hover:text-white border border-zinc-800">
+                        <i class="fa-solid fa-bottle-water mr-1.5 text-amber-500"></i> Bebidas
+                    </button>
+                </div>
+
+                <!-- PRODUCTS GRID -->
+                <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Dynamically populated by JS -->
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ABOUT & ROOFTOP LOCATION SECTION -->
+        <section id="sobre" class="py-20 relative overflow-hidden border-t border-zinc-900">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- LEFT TEXT CONTENT -->
+                    <div class="lg:col-span-6 space-y-6">
+                        <div class="inline-flex items-center gap-2 text-amber-500 text-xs font-bold tracking-widest uppercase bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">
+                            <i class="fa-solid fa-building-user"></i> Experiência Única em Codó
+                        </div>
+                        <h2 class="text-3xl sm:text-5xl font-black text-white leading-tight">
+                            Mesas na Cobertura & <br> Clima Acolhedor
+                        </h2>
+                        <p class="text-zinc-300 leading-relaxed text-sm sm:text-base">
+                            Localizada no coração do bairro São Sebastião, a **La Casa de Hambúrguer Codó** combina hambúrgueres artesanais de altíssima qualidade com um ambiente super agradável na cobertura.
+                        </p>
+
+                        <div class="space-y-4 pt-2">
+                            <div class="flex items-start gap-4 p-3.5 rounded-2xl bg-zinc-900/60 border border-zinc-800">
+                                <div class="p-3 bg-amber-500/10 text-amber-500 rounded-xl">
+                                    <i class="fa-solid fa-wifi text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white text-base">Wi-Fi Gratuito para Clientes</h4>
+                                    <p class="text-xs text-zinc-400">Navegue em alta velocidade enquanto saboreia seu lanche na nossa cobertura.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4 p-3.5 rounded-2xl bg-zinc-900/60 border border-zinc-800">
+                                <div class="p-3 bg-red-500/10 text-red-500 rounded-xl">
+                                    <i class="fa-solid fa-motorcycle text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white text-base">Delivery Rápido em Codó</h4>
+                                    <p class="text-xs text-zinc-400">Seu pedido chega quentinho e bem embalado na sua casa em poucos minutos.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ADDRESS BOX -->
+                        <div class="bg-gradient-to-r from-zinc-900 to-zinc-950 p-5 rounded-2xl border border-zinc-800 space-y-3">
+                            <div class="flex items-center gap-3 text-amber-400 font-bold text-sm">
+                                <i class="fa-solid fa-map-pin text-lg"></i>
+                                <span>Endereço Oficial</span>
+                            </div>
+                            <p class="text-zinc-200 text-sm font-medium">
+                                Av. Augusto Teixeira, 2778 - Bairro São Sebastião, Codó - MA, 65400-000
+                            </p>
+                            <div class="flex flex-wrap gap-3 pt-2">
+                                <a href="https://maps.google.com/?q=Av.+Augusto+Teixeira,+2778+-+São+Sebastião,+Codó+-+MA" target="_blank" class="bg-amber-500 hover:bg-amber-600 text-zinc-950 text-xs font-extrabold px-4 py-2.5 rounded-xl flex items-center gap-2">
+                                    <i class="fa-solid fa-diamond-turn-right"></i> Abrir no Google Maps
+                                </a>
+                                <a href="tel:99982640045" class="bg-zinc-800 hover:bg-zinc-700 text-white text-xs font-bold px-4 py-2.5 rounded-xl flex items-center gap-2">
+                                    <i class="fa-solid fa-phone text-emerald-400"></i> (99) 98264-0045
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- RIGHT VISUAL / SIMULATED MAP -->
+                    <div class="lg:col-span-6 space-y-4">
+                        <div class="relative rounded-3xl overflow-hidden border border-zinc-800 shadow-2xl group">
+                            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=1000" alt="Ambiente Hamburgueria Cobertura" class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent"></div>
+                            <div class="absolute bottom-4 left-4 right-4 p-4 glass-panel rounded-2xl flex items-center justify-between">
+                                <div>
+                                    <span class="text-xs text-amber-400 font-bold block">Ambiente Cobertura</span>
+                                    <span class="text-sm font-semibold text-white">Vista para a Av. Augusto Teixeira</span>
+                                </div>
+                                <span class="bg-emerald-500/20 text-emerald-400 text-xs font-bold px-3 py-1 rounded-full border border-emerald-500/30">
+                                    Mesas Livres
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- MAP PREVIEW BOX -->
+                        <div class="glass-card rounded-2xl p-4 border border-zinc-800 text-center space-y-2">
+                            <div class="flex items-center justify-between text-xs text-zinc-400">
+                                <span><i class="fa-regular fa-clock mr-1"></i> Horário: 18:00 às 23:30</span>
+                                <span class="text-emerald-400 font-bold"><i class="fa-solid fa-circle text-[8px] mr-1"></i> Aberto Agora</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- REVIEWS SECTION -->
+        <section id="avaliacoes" class="py-16 bg-zinc-950 border-t border-zinc-900">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 mb-12">
+                    <div>
+                        <span class="text-xs font-black tracking-widest text-amber-500 uppercase">O Que Dizem Nossos Clientes</span>
+                        <h2 class="text-3xl sm:text-4xl font-black text-white mt-1">Avaliações do Google</h2>
+                    </div>
+
+                    <!-- SCORE SUMMARY CARD -->
+                    <div class="flex items-center gap-4 bg-zinc-900 p-4 rounded-2xl border border-zinc-800">
+                        <div class="text-center">
+                            <span class="text-3xl font-black text-amber-400 block leading-none">4.1</span>
+                            <div class="text-amber-400 text-xs mt-1">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star-half-stroke"></i>
+                            </div>
+                        </div>
+                        <div class="border-l border-zinc-800 pl-4 text-xs text-zinc-400">
+                            <span class="font-bold text-white block text-sm">Nota Geral</span>
+                            <span>Baseado em 16+ avaliações reais no Google Maps</span>
+                        </div>
+                        <button onclick="openReviewModal()" class="bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold text-xs px-3.5 py-2 rounded-xl transition-all ml-2">
+                            Avaliar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- REVIEWS GRID -->
+                <div id="reviews-container" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Static Reviews from real profile feedback -->
+                    <div class="glass-card p-6 rounded-2xl border border-zinc-800 flex flex-col justify-between space-y-4">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-amber-500 to-red-500 flex items-center justify-center font-bold text-white">
+                                        M
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-white text-sm">Mateus Silva</h4>
+                                        <span class="text-xs text-zinc-500">Cliente Local</span>
+                                    </div>
+                                </div>
+                                <div class="text-amber-400 text-xs">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                            </div>
+                            <p class="text-xs text-zinc-300 leading-relaxed italic">
+                                "Ambiente excelente na cobertura! Hamburguer muito saboroso e o atendimento via WhatsApp foi super atencioso. Super recomendo em Codó!"
+                            </p>
+                        </div>
+                        <span class="text-[10px] text-zinc-500">Avaliado no Google</span>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl border border-zinc-800 flex flex-col justify-between space-y-4">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-red-500 to-amber-500 flex items-center justify-center font-bold text-white">
+                                        C
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-white text-sm">Carla Mendes</h4>
+                                        <span class="text-xs text-zinc-500">Guia Local</span>
+                                    </div>
+                                </div>
+                                <div class="text-amber-400 text-xs">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                            </div>
+                            <p class="text-xs text-zinc-300 leading-relaxed italic">
+                                "A cobertura tem uma vista muito bacana da cidade, wi-fi bom e o hambúrguer artesanal é bem caprichado. O ponto da carne veio impecável."
+                            </p>
+                        </div>
+                        <span class="text-[10px] text-zinc-500">Avaliado no Google</span>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl border border-zinc-800 flex flex-col justify-between space-y-4">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-emerald-500 to-amber-500 flex items-center justify-center font-bold text-white">
+                                        R
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-white text-sm">Rodrigo Oliveira</h4>
+                                        <span class="text-xs text-zinc-500">Cliente Frequente</span>
+                                    </div>
+                                </div>
+                                <div class="text-amber-400 text-xs">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
+                                </div>
+                            </div>
+                            <p class="text-xs text-zinc-300 leading-relaxed italic">
+                                "Lanche de muita qualidade e batata frita crocante. Preço justo para a proposta artesanal. Vale a pena conhecer!"
+                            </p>
+                        </div>
+                        <span class="text-[10px] text-zinc-500">Avaliado no Google</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-zinc-950 border-t border-zinc-900 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                
+                <div class="space-y-4 md:col-span-1">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-burger text-2xl text-amber-500"></i>
+                        <span class="font-black text-lg text-white">LA CASA DE HAMBÚRGUER</span>
+                    </div>
+                    <p class="text-xs text-zinc-400 leading-relaxed">
+                        A sua melhor opção de hamburgueria artesanal com mesas na cobertura em Codó - MA.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-white text-sm mb-3">Links Rápidos</h4>
+                    <ul class="space-y-2 text-xs text-zinc-400">
+                        <li><a href="#inicio" class="hover:text-amber-400 transition-colors">Início</a></li>
+                        <li><a href="#cardapio" class="hover:text-amber-400 transition-colors">Ver Cardápio</a></li>
+                        <li><a href="#sobre" class="hover:text-amber-400 transition-colors">Mesas na Cobertura</a></li>
+                        <li><a href="#avaliacoes" class="hover:text-amber-400 transition-colors">Avaliações</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-white text-sm mb-3">Horários & Contato</h4>
+                    <ul class="space-y-2 text-xs text-zinc-400">
+                        <li><i class="fa-regular fa-clock text-amber-500 mr-2"></i> Segunda a Domingo: 18:00 - 23:30</li>
+                        <li><i class="fa-brands fa-whatsapp text-emerald-500 mr-2"></i> (99) 98264-0045</li>
+                        <li><i class="fa-solid fa-location-dot text-red-500 mr-2"></i> Av. Augusto Teixeira, 2778</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-white text-sm mb-3">Formas de Pagamento</h4>
+                    <div class="flex flex-wrap gap-2 text-xs text-zinc-300">
+                        <span class="bg-zinc-900 border border-zinc-800 px-3 py-1.5 rounded-lg flex items-center gap-1.5"><i class="fa-solid fa-qrcode text-emerald-400"></i> PIX</span>
+                        <span class="bg-zinc-900 border border-zinc-800 px-3 py-1.5 rounded-lg flex items-center gap-1.5"><i class="fa-solid fa-credit-card text-amber-400"></i> Cartão</span>
+                        <span class="bg-zinc-900 border border-zinc-800 px-3 py-1.5 rounded-lg flex items-center gap-1.5"><i class="fa-solid fa-money-bill-wave text-green-400"></i> Dinheiro</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="border-t border-zinc-900 mt-10 pt-6 text-center text-xs text-zinc-500 flex flex-col sm:flex-row justify-between items-center gap-4">
+                <p>© 2026 La Casa de Hambúrguer Codó. Todos os direitos reservados.</p>
+                <p class="text-zinc-600">São Sebastião - Codó, Maranhão</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ITEM CUSTOMIZATION MODAL -->
+    <div id="item-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-zinc-900 border border-zinc-800 rounded-3xl max-w-lg w-full max-h-[90vh] overflow-y-auto shadow-2xl relative animate-fade-in">
+            
+            <button onclick="closeCustomizer()" class="absolute top-4 right-4 z-10 bg-zinc-800 hover:bg-zinc-700 text-zinc-300 w-9 h-9 rounded-full flex items-center justify-center">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <div id="modal-content" class="p-6 space-y-6">
+                <!-- Content inserted via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- REVIEW MODAL -->
+    <div id="review-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-zinc-900 border border-zinc-800 rounded-3xl max-w-md w-full p-6 shadow-2xl space-y-4 relative">
+            <button onclick="closeReviewModal()" class="absolute top-4 right-4 bg-zinc-800 text-zinc-400 hover:text-white w-8 h-8 rounded-full flex items-center justify-center">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <h3 class="text-xl font-extrabold text-white">Deixar Sua Avaliação</h3>
+            <p class="text-xs text-zinc-400">Sua opinião ajuda a melhorar a experiência da La Casa em Codó!</p>
+
+            <form id="review-form" onsubmit="submitReview(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-zinc-300 mb-1">Seu Nome</label>
+                    <input type="text" id="rev-name" required placeholder="Ex: Maria Clara" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-amber-500">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-zinc-300 mb-1">Nota (1 a 5 Estrelas)</label>
+                    <select id="rev-rating" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-sm text-amber-400 font-bold focus:outline-none focus:border-amber-500">
+                        <option value="5">⭐⭐⭐⭐⭐ 5.0 - Excelente</option>
+                        <option value="4">⭐⭐⭐⭐ 4.0 - Muito Bom</option>
+                        <option value="3">⭐⭐⭐ 3.0 - Razoável</option>
+                        <option value="2">⭐⭐ 2.0 - Pode Melhorar</option>
+                        <option value="1">⭐ 1.0 - Ruim</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-zinc-300 mb-1">Seu Comentário</label>
+                    <textarea id="rev-comment" required rows="3" placeholder="Conte como foi sua experiência..." class="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-amber-500"></textarea>
+                </div>
+
+                <button type="submit" class="w-full bg-amber-500 hover:bg-amber-400 text-zinc-950 font-black py-3.5 rounded-xl text-sm transition-all shadow">
+                    Publicar Avaliação
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- CART SLIDE-OVER DRAWER -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 hidden">
+        <div onclick="toggleCart()" class="absolute inset-0 bg-black/70 backdrop-blur-sm transition-opacity"></div>
+        <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
+            <div class="w-screen max-w-md bg-zinc-950 border-l border-zinc-800 text-white flex flex-col justify-between shadow-2xl">
+                
+                <!-- CART HEADER -->
+                <div class="p-5 border-b border-zinc-800 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-bag-shopping text-amber-500 text-xl"></i>
+                        <h3 class="font-extrabold text-lg">Seu Pedido</h3>
+                    </div>
+                    <button onclick="toggleCart()" class="text-zinc-400 hover:text-white p-2">
+                        <i class="fa-solid fa-xmark text-xl"></i>
+                    </button>
+                </div>
+
+                <!-- CART ITEMS LIST -->
+                <div id="cart-items-container" class="flex-grow overflow-y-auto p-5 space-y-4">
+                    <!-- Populated dynamically via JS -->
+                </div>
+
+                <!-- CART FOOTER & CHECKOUT -->
+                <div class="p-5 border-t border-zinc-800 bg-zinc-900/80 space-y-4">
+                    
+                    <!-- ORDER TYPE SELECTOR -->
+                    <div class="grid grid-cols-2 gap-2 bg-zinc-950 p-1 rounded-xl border border-zinc-800 text-xs">
+                        <button onclick="setOrderType('delivery')" id="btn-type-delivery" class="py-2 rounded-lg font-bold bg-amber-500 text-zinc-950 transition-all">
+                            <i class="fa-solid fa-motorcycle mr-1"></i> Entrega
+                        </button>
+                        <button onclick="setOrderType('pickup')" id="btn-type-pickup" class="py-2 rounded-lg font-bold text-zinc-400 hover:text-white transition-all">
+                            <i class="fa-solid fa-store mr-1"></i> Retirar na Loja
+                        </button>
+                    </div>
+
+                    <!-- DELIVERY FIELDS -->
+                    <div id="delivery-fields" class="space-y-2 text-xs">
+                        <input type="text" id="cust-name" placeholder="Seu Nome Completo" class="w-full bg-zinc-950 border border-zinc-800 p-2.5 rounded-xl text-white focus:outline-none focus:border-amber-500">
+                        <input type="text" id="cust-address" placeholder="Endereço de Entrega (Rua, Bairro, Nº)" class="w-full bg-zinc-950 border border-zinc-800 p-2.5 rounded-xl text-white focus:outline-none focus:border-amber-500">
+                    </div>
+
+                    <!-- SUMMARY TOTALS -->
+                    <div class="space-y-1.5 text-xs text-zinc-400 pt-2 border-t border-zinc-800">
+                        <div class="flex justify-between">
+                            <span>Subtotal</span>
+                            <span id="cart-subtotal" class="text-white font-semibold">R$ 0,00</span>
+                        </div>
+                        <div class="flex justify-between" id="delivery-fee-row">
+                            <span>Taxa de Entrega (Codó)</span>
+                            <span id="cart-fee" class="text-amber-400 font-semibold">R$ 5,00</span>
+                        </div>
+                        <div class="flex justify-between text-base font-black text-white pt-2 border-t border-zinc-800">
+                            <span>Total Geral</span>
+                            <span id="cart-total" class="text-amber-400">R$ 0,00</span>
+                        </div>
+                    </div>
+
+                    <!-- WHATSAPP CHECKOUT BUTTON -->
+                    <button onclick="sendOrderToWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold py-3.5 rounded-xl text-sm flex items-center justify-center gap-2 shadow-lg transition-all active:scale-95">
+                        <i class="fa-brands fa-whatsapp text-xl"></i>
+                        Enviar Pedido via WhatsApp
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- NOTIFICATION TOAST -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 hidden bg-amber-500 text-zinc-950 font-bold px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 transition-all animate-bounce">
+        <i class="fa-solid fa-circle-check text-lg"></i>
+        <span id="toast-msg">Item adicionado com sucesso!</span>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // PRODUCTS DATABASE
+        const products = [
+            {
+                id: 1,
+                name: "La Casa Suprema Cheese",
+                category: "artesanal",
+                price: 32.90,
+                image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&q=80&w=600",
+                desc: "Blend artesanal 180g, cheddar duplo cremoso, bacon artesanal crocante, cebola caramelizada e molho secreto no pão brioche artesanal.",
+                tag: "Mais Pedido"
+            },
+            {
+                id: 2,
+                name: "Codó Master Bacon",
+                category: "artesanal",
+                price: 34.50,
+                image: "https://images.unsplash.com/photo-1553979459-d2229ba7433b?auto=format&fit=crop&q=80&w=600",
+                desc: "Blend suculento 180g, queijo prato derretido, tiras duplas de bacon grelhado, picles artesanal e maionese defumada da casa.",
+                tag: "Especialidade"
+            },
+            {
+                id: 3,
+                name: "Smash Duplo Cheddar",
+                category: "smash",
+                price: 24.90,
+                image: "https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&q=80&w=600",
+                desc: "2x hambúrgueres Smash 80g prensados na chapa com crostinha perfeita, queijo cheddar americano e maionese especial.",
+                tag: "Super Crostinha"
+            },
+            {
+                id: 4,
+                name: "Smash Salada Gourmet",
+                category: "smash",
+                price: 22.90,
+                image: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&q=80&w=600",
+                desc: "Smash 90g com crosta dourada, queijo muzzarella derretido, alface americana fresca, tomate maduro e molho especial.",
+                tag: "Leve & Saboroso"
+            },
+            {
+                id: 5,
+                name: "Combo La Casa (Burger + Batata + Refri)",
+                category: "combos",
+                price: 42.90,
+                image: "https://images.unsplash.com/photo-1610440042657-612c34d95e9f?auto=format&fit=crop&q=80&w=600",
+                desc: "1 Burguer Artesanal 180g à sua escolha + Porção de Batata Frita crocante 150g + Refrigerante lata 350ml geladinho.",
+                tag: "Melhor Custo"
+            },
+            {
+                id: 6,
+                name: "Porção Batata Rústica com Bacon & Cheddar",
+                category: "combos",
+                price: 19.90,
+                image: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&q=80&w=600",
+                desc: "Batatas rústicas douradas e crocantes, cobertas com cheddar cremoso e crispy de bacon fresquinho.",
+                tag: "Acompanhamento"
+            },
+            {
+                id: 7,
+                name: "Refrigerante Lata 350ml",
+                category: "bebidas",
+                price: 6.00,
+                image: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&q=80&w=600",
+                desc: "Coca-Cola, Guaraná Antarctica, Sprite ou Fanta Laranja bem gelada.",
+                tag: "Bebida"
+            },
+            {
+                id: 8,
+                name: "Suco Natural de Laranja 500ml",
+                category: "bebidas",
+                price: 8.50,
+                image: "https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&q=80&w=600",
+                desc: "Suco 100% natural da fruta, espremido na hora com ou sem açúcar.",
+                tag: "Natural"
+            }
+        ];
+
+        // ADD-ONS LIST
+        const defaultAddons = [
+            { id: "a1", name: "Bacon Extra", price: 4.50 },
+            { id: "a2", name: "Cheddar Cremoso Extra", price: 4.00 },
+            { id: "a3", name: "Hambúrguer Extra (180g)", price: 9.00 },
+            { id: "a4", name: "Molho da Casa Extra", price: 3.00 }
+        ];
+
+        // APP STATE
+        let cart = [];
+        let orderType = 'delivery'; // 'delivery' or 'pickup'
+        let currentModalItem = null;
+
+        // INITIALIZE APP
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProducts('all');
+            updateCartUI();
+        });
+
+        // RENDER PRODUCTS GRID
+        function renderProducts(category) {
+            const grid = document.getElementById('products-grid');
+            grid.innerHTML = '';
+
+            const filtered = category === 'all' 
+                ? products 
+                : products.filter(p => p.category === category);
+
+            filtered.forEach(p => {
+                const card = document.createElement('div');
+                card.className = "glass-panel rounded-2xl overflow-hidden border border-zinc-800/80 hover:border-amber-500/50 transition-all duration-300 flex flex-col justify-between group";
+                card.innerHTML = `
+                    <div>
+                        <div class="relative overflow-hidden h-48">
+                            <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            ${p.tag ? `<span class="absolute top-3 left-3 bg-gradient-to-r from-amber-500 to-amber-600 text-zinc-950 font-black text-[10px] uppercase px-2.5 py-1 rounded-full tracking-wider shadow">${p.tag}</span>` : ''}
+                        </div>
+                        <div class="p-5 space-y-2">
+                            <h3 class="font-extrabold text-lg text-white group-hover:text-amber-400 transition-colors">${p.name}</h3>
+                            <p class="text-xs text-zinc-400 line-clamp-2 leading-relaxed">${p.desc}</p>
+                        </div>
+                    </div>
+                    <div class="p-5 pt-0 flex items-center justify-between">
+                        <div>
+                            <span class="text-[10px] text-zinc-500 block uppercase font-bold">Valor</span>
+                            <span class="text-xl font-black text-amber-400">R$ ${p.price.toFixed(2).replace('.', ',')}</span>
+                        </div>
+                        <button onclick="openCustomizer(${p.id})" class="bg-zinc-800 hover:bg-amber-500 hover:text-zinc-950 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition-all border border-zinc-700 flex items-center gap-1.5">
+                            <i class="fa-solid fa-sliders"></i> Personalizar
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // FILTER CATEGORY TABS
+        function filterCategory(cat) {
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                btn.classList.remove('bg-amber-500', 'text-zinc-950', 'shadow-md');
+                btn.classList.add('bg-zinc-900', 'text-zinc-400');
+            });
+            event.currentTarget.classList.remove('bg-zinc-900', 'text-zinc-400');
+            event.currentTarget.classList.add('bg-amber-500', 'text-zinc-950', 'shadow-md');
+
+            renderProducts(cat);
+        }
+
+        // OPEN CUSTOMIZER MODAL
+        function openCustomizer(productId) {
+            const prod = products.find(p => p.id === productId);
+            if (!prod) return;
+
+            currentModalItem = prod;
+            const modal = document.getElementById('item-modal');
+            const container = document.getElementById('modal-content');
+
+            const isBurger = prod.category === 'artesanal' || prod.category === 'smash' || prod.category === 'combos';
+
+            container.innerHTML = `
+                <div class="flex gap-4 items-center">
+                    <img src="${prod.image}" alt="${prod.name}" class="w-20 h-20 rounded-2xl object-cover border border-zinc-800">
+                    <div>
+                        <h3 class="text-lg font-black text-white">${prod.name}</h3>
+                        <p class="text-xs text-zinc-400">${prod.desc}</p>
+                        <span class="text-amber-400 font-extrabold text-base mt-1 block">R$ ${prod.price.toFixed(2).replace('.', ',')}</span>
+                    </div>
+                </div>
+
+                ${isBurger ? `
+                <!-- MEAT POINT OPTION -->
+                <div class="space-y-2">
+                    <label class="block text-xs font-bold text-amber-400 uppercase tracking-wider">Ponto da Carne</label>
+                    <div class="grid grid-cols-3 gap-2 text-xs">
+                        <label class="border border-zinc-800 bg-zinc-950 p-2.5 rounded-xl text-center cursor-pointer flex items-center justify-center gap-1 hover:border-amber-500">
+                            <input type="radio" name="ponto" value="Ao Ponto para Mal" class="accent-amber-500">
+                            <span class="text-zinc-300">Ao Ponto -</span>
+                        </label>
+                        <label class="border border-zinc-800 bg-zinc-950 p-2.5 rounded-xl text-center cursor-pointer flex items-center justify-center gap-1 hover:border-amber-500">
+                            <input type="radio" name="ponto" value="Ao Ponto da Casa" checked class="accent-amber-500">
+                            <span class="text-zinc-300">Ao Ponto</span>
+                        </label>
+                        <label class="border border-zinc-800 bg-zinc-950 p-2.5 rounded-xl text-center cursor-pointer flex items-center justify-center gap-1 hover:border-amber-500">
+                            <input type="radio" name="ponto" value="Bem Passado" class="accent-amber-500">
+                            <span class="text-zinc-300">Bem Passado</span>
+                        </label>
+                    </div>
+                </div>
+                ` : ''}
+
+                <!-- ADDONS SECTION -->
+                <div class="space-y-2">
+                    <label class="block text-xs font-bold text-amber-400 uppercase tracking-wider">Adicionais Extras</label>
+                    <div class="space-y-2">
+                        ${defaultAddons.map(addon => `
+                            <label class="flex items-center justify-between p-3 rounded-xl bg-zinc-950 border border-zinc-800 text-xs cursor-pointer hover:border-zinc-700">
+                                <div class="flex items-center gap-2">
+                                    <input type="checkbox" value="${addon.id}" data-name="${addon.name}" data-price="${addon.price}" class="addon-checkbox w-4 h-4 accent-amber-500 rounded">
+                                    <span class="text-zinc-200 font-medium">${addon.name}</span>
+                                </div>
+                                <span class="text-amber-400 font-bold">+ R$ ${addon.price.toFixed(2).replace('.', ',')}</span>
+                            </label>
+                        `).join('')}
+                    </div>
+                </div>
+
+                <!-- SPECIAL INSTRUCTIONS -->
+                <div class="space-y-2">
+                    <label class="block text-xs font-bold text-amber-400 uppercase tracking-wider">Observações do Item</label>
+                    <input type="text" id="modal-obs" placeholder="Ex: Sem cebola, molho à parte, etc." class="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-amber-500">
+                </div>
+
+                <!-- ADD TO CART BUTTON -->
+                <button onclick="confirmAddToCart()" class="w-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-zinc-950 font-black py-4 rounded-xl text-sm transition-all shadow-lg flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-cart-plus text-base"></i>
+                    Adicionar ao Pedido
+                </button>
+            `;
+
+            modal.classList.remove('hidden');
+        }
+
+        function closeCustomizer() {
+            document.getElementById('item-modal').classList.add('hidden');
+        }
+
+        // CONFIRM ADD TO CART FROM MODAL
+        function confirmAddToCart() {
+            if (!currentModalItem) return;
+
+            const selectedAddons = [];
+            document.querySelectorAll('.addon-checkbox:checked').forEach(cb => {
+                selectedAddons.push({
+                    name: cb.getAttribute('data-name'),
+                    price: parseFloat(cb.getAttribute('data-price'))
+                });
+            });
+
+            const pontoEl = document.querySelector('input[name="ponto"]:checked');
+            const ponto = pontoEl ? pontoEl.value : null;
+
+            const obs = document.getElementById('modal-obs').value.trim();
+
+            let basePrice = currentModalItem.price;
+            let addonsPrice = selectedAddons.reduce((sum, a) => sum + a.price, 0);
+            let finalPrice = basePrice + addonsPrice;
+
+            const cartItem = {
+                cartItemId: Date.now(),
+                id: currentModalItem.id,
+                name: currentModalItem.name,
+                unitPrice: finalPrice,
+                ponto: ponto,
+                addons: selectedAddons,
+                obs: obs,
+                qty: 1
+            };
+
+            cart.push(cartItem);
+            closeCustomizer();
+            updateCartUI();
+            showToast(`"${currentModalItem.name}" adicionado ao pedido!`);
+        }
+
+        // UPDATE CART DRAWER & BADGE
+        function updateCartUI() {
+            const badge = document.getElementById('cart-badge');
+            const container = document.getElementById('cart-items-container');
+            const subtotalEl = document.getElementById('cart-subtotal');
+            const feeEl = document.getElementById('cart-fee');
+            const totalEl = document.getElementById('cart-total');
+
+            const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+            badge.innerText = totalQty;
+
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-12 space-y-3">
+                        <i class="fa-solid fa-basket-shopping text-4xl text-zinc-700"></i>
+                        <p class="text-zinc-400 text-sm font-medium">Seu carrinho está vazio.</p>
+                        <a href="#cardapio" onclick="toggleCart()" class="text-amber-400 text-xs font-bold hover:underline">Escolha um hambúrguer saboroso</a>
+                    </div>
+                `;
+                subtotalEl.innerText = 'R$ 0,00';
+                totalEl.innerText = 'R$ 0,00';
+                return;
+            }
+
+            container.innerHTML = '';
+            let subtotal = 0;
+
+            cart.forEach(item => {
+                const itemTotal = item.unitPrice * item.qty;
+                subtotal += itemTotal;
+
+                const row = document.createElement('div');
+                row.className = "bg-zinc-900 border border-zinc-800 p-3.5 rounded-2xl space-y-2";
+                row.innerHTML = `
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h4 class="font-bold text-sm text-white">${item.name}</h4>
+                            <span class="text-amber-400 text-xs font-extrabold">R$ ${item.unitPrice.toFixed(2).replace('.', ',')}</span>
+                        </div>
+                        <button onclick="removeFromCart(${item.cartItemId})" class="text-zinc-500 hover:text-red-400 text-xs p-1">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </div>
+
+                    ${item.ponto ? `<div class="text-[10px] text-zinc-400"><span class="text-amber-500">Ponto:</span> ${item.ponto}</div>` : ''}
+                    
+                    ${item.addons.length > 0 ? `
+                        <div class="text-[10px] text-zinc-400">
+                            <span class="text-amber-500">Extras:</span> ${item.addons.map(a => a.name).join(', ')}
+                        </div>
+                    ` : ''}
+
+                    ${item.obs ? `<div class="text-[10px] text-zinc-500 italic">"Obs: ${item.obs}"</div>` : ''}
+
+                    <div class="flex items-center justify-between pt-2 border-t border-zinc-800 text-xs">
+                        <div class="flex items-center gap-2 bg-zinc-950 border border-zinc-800 rounded-lg px-2 py-1">
+                            <button onclick="changeQty(${item.cartItemId}, -1)" class="text-zinc-400 hover:text-white px-1 font-bold">-</button>
+                            <span class="font-bold text-white px-1">${item.qty}</span>
+                            <button onclick="changeQty(${item.cartItemId}, 1)" class="text-zinc-400 hover:text-white px-1 font-bold">+</button>
+                        </div>
+                        <span class="font-black text-white">R$ ${itemTotal.toFixed(2).replace('.', ',')}</span>
+                    </div>
+                `;
+                container.appendChild(row);
+            });
+
+            const deliveryFee = orderType === 'delivery' ? 5.00 : 0.00;
+            const grandTotal = subtotal + deliveryFee;
+
+            subtotalEl.innerText = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
+            feeEl.innerText = orderType === 'delivery' ? `R$ ${deliveryFee.toFixed(2).replace('.', ',')}` : 'Grátis (Retirada)';
+            totalEl.innerText = `R$ ${grandTotal.toFixed(2).replace('.', ',')}`;
+        }
+
+        // CART ACTIONS
+        function removeFromCart(cartItemId) {
+            cart = cart.filter(item => item.cartItemId !== cartItemId);
+            updateCartUI();
+        }
+
+        function changeQty(cartItemId, delta) {
+            const item = cart.find(i => i.cartItemId === cartItemId);
+            if (!item) return;
+
+            item.qty += delta;
+            if (item.qty <= 0) {
+                removeFromCart(cartItemId);
+            } else {
+                updateCartUI();
+            }
+        }
+
+        function setOrderType(type) {
+            orderType = type;
+            const btnDel = document.getElementById('btn-type-delivery');
+            const btnPick = document.getElementById('btn-type-pickup');
+            const delFields = document.getElementById('delivery-fields');
+
+            if (type === 'delivery') {
+                btnDel.className = "py-2 rounded-lg font-bold bg-amber-500 text-zinc-950 transition-all";
+                btnPick.className = "py-2 rounded-lg font-bold text-zinc-400 hover:text-white transition-all";
+                delFields.style.display = 'block';
+            } else {
+                btnPick.className = "py-2 rounded-lg font-bold bg-amber-500 text-zinc-950 transition-all";
+                btnDel.className = "py-2 rounded-lg font-bold text-zinc-400 hover:text-white transition-all";
+                delFields.style.display = 'none';
+            }
+
+            updateCartUI();
+        }
+
+        function toggleCart() {
+            const drawer = document.getElementById('cart-drawer');
+            drawer.classList.toggle('hidden');
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // SEND WHATSAPP ORDER
+        function sendOrderToWhatsApp() {
+            if (cart.length === 0) {
+                alert("Seu carrinho está vazio! Adicione algum hambúrguer antes de enviar.");
+                return;
+            }
+
+            const name = document.getElementById('cust-name').value.trim();
+            const address = document.getElementById('cust-address').value.trim();
+
+            if (orderType === 'delivery' && (!name || !address)) {
+                alert("Por favor, preencha seu nome e endereço de entrega em Codó!");
+                return;
+            }
+
+            let text = `🍔 *NOVO PEDIDO - LA CASA DE HAMBÚRGUER CODÓ*\n`;
+            text += `-------------------------------------------\n`;
+            text += `*Tipo:* ${orderType === 'delivery' ? '🚀 Delivery (Entrega)' : '🏪 Retirada no Local (Cobertura)'}\n`;
+            if (name) text += `*Cliente:* ${name}\n`;
+            if (orderType === 'delivery' && address) text += `*Endereço:* ${address} (Codó - MA)\n`;
+            text += `-------------------------------------------\n\n`;
+            text += `*ITENS DO PEDIDO:*\n`;
+
+            let subtotal = 0;
+            cart.forEach((item, index) => {
+                const totalItem = item.unitPrice * item.qty;
+                subtotal += totalItem;
+
+                text += `*${item.qty}x ${item.name}* - R$ ${totalItem.toFixed(2).replace('.', ',')}\n`;
+                if (item.ponto) text += `   • Ponto: ${item.ponto}\n`;
+                if (item.addons.length > 0) text += `   • Extras: ${item.addons.map(a => a.name).join(', ')}\n`;
+                if (item.obs) text += `   • Obs: ${item.obs}\n`;
+                text += `\n`;
+            });
+
+            const fee = orderType === 'delivery' ? 5.00 : 0.00;
+            const grandTotal = subtotal + fee;
+
+            text += `-------------------------------------------\n`;
+            text += `*Subtotal:* R$ ${subtotal.toFixed(2).replace('.', ',')}\n`;
+            if (orderType === 'delivery') text += `*Taxa Entrega:* R$ ${fee.toFixed(2).replace('.', ',')}\n`;
+            text += `*TOTAL GERAL:* *R$ ${grandTotal.toFixed(2).replace('.', ',')}*\n`;
+            text += `-------------------------------------------\n`;
+            text += `Aguardando confirmação do pedido! 🔥`;
+
+            const encoded = encodeURIComponent(text);
+            const whatsappUrl = `https://wa.me/5599982640045?text=${encoded}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // REVIEWS SYSTEM
+        function openReviewModal() {
+            document.getElementById('review-modal').classList.remove('hidden');
+        }
+
+        function closeReviewModal() {
+            document.getElementById('review-modal').classList.add('hidden');
+        }
+
+        function submitReview(e) {
+            e.preventDefault();
+            const name = document.getElementById('rev-name').value;
+            const rating = parseInt(document.getElementById('rev-rating').value);
+            const comment = document.getElementById('rev-comment').value;
+
+            const reviewsContainer = document.getElementById('reviews-container');
+            const card = document.createElement('div');
+            card.className = "glass-card p-6 rounded-2xl border border-amber-500/30 flex flex-col justify-between space-y-4 animate-fade-in";
+            
+            let starsHtml = '';
+            for (let i = 0; i < 5; i++) {
+                starsHtml += i < rating ? '<i class="fa-solid fa-star"></i>' : '<i class="fa-regular fa-star"></i>';
+            }
+
+            card.innerHTML = `
+                <div class="space-y-3">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-amber-500 text-zinc-950 font-black flex items-center justify-center">
+                                ${name.charAt(0).toUpperCase()}
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-sm">${name}</h4>
+                                <span class="text-xs text-amber-400">Cliente Recente</span>
+                            </div>
+                        </div>
+                        <div class="text-amber-400 text-xs">
+                            ${starsHtml}
+                        </div>
+                    </div>
+                    <p class="text-xs text-zinc-300 leading-relaxed italic">"${comment}"</p>
+                </div>
+                <span class="text-[10px] text-zinc-500">Enviado agora pelo site</span>
+            `;
+
+            reviewsContainer.prepend(card);
+            closeReviewModal();
+            showToast("Obrigado! Sua avaliação foi enviada com sucesso.");
+            document.getElementById('review-form').reset();
+        }
+
+        // TOAST NOTIFICATION
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-msg');
+            toastMsg.innerText = msg;
+            toast.classList.remove('hidden');
+
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
