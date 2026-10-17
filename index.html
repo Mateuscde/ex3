@@ -318,6 +318,147 @@
                                 </div>
                             </div>
 
+                              <div class="flex items-center gap-2 bg-zinc-900/80 border border-zinc-800 p-2.5 rounded-xl">
+                            <i class="fa-solid fa-star text-amber-400 text-base"></i>
+                            <div>
+                                <span class="font-bold text-white block">4.1 / 5.0</span>
+                                <span class="text-zinc-500 text-xs">16+ Avaliações</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 bg-zinc-900/80 border border-zinc-800 p-2.5 rounded-xl">
+                            <i class="fa-solid fa-building-user text-amber-400 text-base"></i>
+                            <div>
+                                <span class="font-bold text-white block">Mesas na Cobertura</span>
+                                <span class="text-zinc-500 text-xs">Com Wi-Fi Grátis</span>
+                            </div>
+                        </div>
+                        <div class="col-span-2 sm:col-span-1 flex items-center gap-2 bg-zinc-900/80 border border-zinc-800 p-2.5 rounded-xl">
+                            <i class="fa-solid fa-clock text-emerald-400 text-base"></i>
+                            <div>
+                                <span class="font-bold text-emerald-400 block">Aberto Agora</span>
+                                <span class="text-zinc-500 text-xs">Fecha às 23:30</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- HERO BUTTONS -->
+                    <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+                        <a href="#cardapio" class="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-zinc-950 font-extrabold px-8 py-4 rounded-2xl text-center shadow-lg glow-effect transition-all transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-3">
+                            <i class="fa-solid fa-utensils"></i>
+                            Ver Cardápio & Pedir
+                        </a>
+                        <a href="https://wa.me/5599982640045" target="_blank" class="bg-zinc-900 hover:bg-zinc-800 text-white font-bold px-6 py-4 rounded-2xl border border-zinc-700 text-center transition-all flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-emerald-500 text-xl"></i>
+                            Pedido Rápido WhatsApp
+                        </a>
+                    </div>
+                    
+                    <!-- ADDRESS DIRECT LINK -->
+                    <div class="pt-2 text-xs text-zinc-400 flex items-center justify-center sm:justify-start gap-2">
+                        <i class="fa-solid fa-location-dot text-red-500"></i>
+                        <span>Av. Augusto Teixeira, 2778 - São Sebastião, Codó - MA</span>
+                    </div>
+
+                </div>
+
+                <!-- HERO FEATURED BURGER BANNER CARD -->
+                <div class="md:col-span-5 relative">
+                    <div class="relative mx-auto max-w-sm rounded-3xl p-1 bg-gradient-to-b from-amber-500/30 via-red-500/20 to-transparent">
+                        <div class="glass-panel rounded-[22px] p-6 text-center space-y-4 relative overflow-hidden">
+                            
+                            <span class="absolute top-4 right-4 bg-red-600 text-white font-black text-xs px-3 py-1 rounded-full uppercase tracking-wider shadow">
+                                O Mais Pedido
+                            </span>
+
+                            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&q=80&w=800" alt="La Casa Monster Burger" class="w-full h-52 object-cover rounded-2xl shadow-xl hover:scale-105 transition-transform duration-500">
+                            
+                            <div class="text-left space-y-1">
+                                <h3 class="text-xl font-bold text-white">La Casa Suprema Cheese</h3>
+                                <p class="text-xs text-zinc-400 line-clamp-2">Blend artesanal 180g, bacon crocante, cheddar duplo cremoso, cebola caramelizada e molho especial no pão brioche.</p>
+                            </div>
+
+                            <div class="flex items-center justify-between pt-2 border-t border-zinc-800">
+                                <div>
+                                    <span class="text-xs text-zinc-500 block text-left">A partir de</span>
+                                    <span class="text-2xl font-black text-amber-400">R$ 32,90</span>
+                                </div>
+                                <button onclick="openCustomizer(1)" class="bg-amber-500 hover:bg-amber-400 text-zinc-950 p-3 rounded-xl font-bold transition-all shadow hover:scale-105">
+                                    <i class="fa-solid fa-plus text-lg"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- MENU SECTION -->
+        <section id="cardapio" class="py-16 bg-zinc-950/60 border-t border-zinc-900 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <!-- SECTION HEADER -->
+                <div class="text-center space-y-3 mb-10">
+                    <h2 class="text-xs font-black tracking-widest text-amber-500 uppercase">Nosso Cardápio</h2>
+                    <p class="text-3xl sm:text-4xl font-extrabold text-white">Escolha Seu Hambúrguer Favorito</p>
+                    <p class="text-zinc-400 text-sm max-w-xl mx-auto">Feitos na hora com ingredientes selecionados e o tempero especial de Codó</p>
+                </div>
+
+                <!-- CATEGORY TABS -->
+                <div class="flex items-center justify-start md:justify-center gap-2 overflow-x-auto pb-4 mb-8 scrollbar-none">
+                    <button onclick="filterCategory('all')" class="cat-btn active px-5 py-2.5 rounded-xl font-semibold text-sm whitespace-nowrap bg-amber-500 text-zinc-950 shadow-md">
+                        <i class="fa-solid fa-border-all mr-1.5"></i> Todos os Itens
+                    </button>
+                    <button onclick="filterCategory('artesanal')" class="cat-btn px-5 py-2.5 rounded-xl font-semibold text-sm whitespace-nowrap bg-zinc-900 text-zinc-400 hover:text-white border border-zinc-800">
+                        <i class="fa-solid fa-burger mr-1.5 text-amber-500"></i> Artesanais
+                    </button>
+                    <button onclick="filterCategory('smash')" class="cat-btn px-5 py-2.5 rounded-xl font-semibold text-sm whitespace-nowrap bg-zinc-900 text-zinc-400 hover:text-white border border-zinc-800">
+                        <i class="fa-solid fa-fire-burner mr-1.5 text-amber-500"></i> Smash Burguers
+                    </button>
+                    <button onclick="filterCategory('combos')" class="cat-btn px-5 py-2.5 rounded-xl font-semibold text-sm whitespace-nowrap bg-zinc-900 text-zinc-400 hover:text-white border border-zinc-800">
+                        <i class="fa-solid fa-box-open mr-1.5 text-amber-500"></i> Combos & Batatas
+                    </button>
+                    <button onclick="filterCategory('bebidas')" class="cat-btn px-5 py-2.5 rounded-xl font-semibold text-sm whitespace-nowrap bg-zinc-900 text-zinc-400 hover:text-white border border-zinc-800">
+                        <i class="fa-solid fa-bottle-water mr-1.5 text-amber-500"></i> Bebidas
+                    </button>
+                </div>
+
+                <!-- PRODUCTS GRID -->
+                <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Dynamically populated by JS -->
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ABOUT & ROOFTOP LOCATION SECTION -->
+        <section id="sobre" class="py-20 relative overflow-hidden border-t border-zinc-900">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- LEFT TEXT CONTENT -->
+                    <div class="lg:col-span-6 space-y-6">
+                        <div class="inline-flex items-center gap-2 text-amber-500 text-xs font-bold tracking-widest uppercase bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">
+                            <i class="fa-solid fa-building-user"></i> Experiência Única em Codó
+                        </div>
+                        <h2 class="text-3xl sm:text-5xl font-black text-white leading-tight">
+                            Mesas na Cobertura & <br> Clima Acolhedor
+                        </h2>
+                        <p class="text-zinc-300 leading-relaxed text-sm sm:text-base">
+                            Localizada no coração do bairro São Sebastião, a **La Casa de Hambúrguer Codó** combina hambúrgueres artesanais de altíssima qualidade com um ambiente super agradável na cobertura.
+                        </p>
+
+                        <div class="space-y-4 pt-2">
+                            <div class="flex items-start gap-4 p-3.5 rounded-2xl bg-zinc-900/60 border border-zinc-800">
+                                <div class="p-3 bg-amber-500/10 text-amber-500 rounded-xl">
+                                    <i class="fa-solid fa-wifi text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white text-base">Wi-Fi Gratuito para Clientes</h4>
+                                    <p class="text-xs text-zinc-400">Navegue em alta velocidade enquanto saboreia seu lanche na nossa cobertura.</p>
+                                </div>
+                            </div>
+
                             <div class="flex items-start gap-4 p-3.5 rounded-2xl bg-zinc-900/60 border border-zinc-800">
                                 <div class="p-3 bg-red-500/10 text-red-500 rounded-xl">
                                     <i class="fa-solid fa-motorcycle text-xl"></i>
